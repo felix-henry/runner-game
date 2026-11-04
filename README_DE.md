@@ -57,7 +57,9 @@ npm run dev
 - **Doppelsprung:** Beim Dino noch in der Luft erneut springen, tippen oder nach oben wischen.
 - **Pause:** <kbd>Esc</kbd> oder Pause-Button.
 
-Kurz springen für einen kleinen Sprung, länger halten für einen höheren. **Jeder Sprung braucht einen neuen Tastendruck, Tipp oder Wischer.** Kein automatisches Bunny-Hopping. Zum Fortsetzen, Neustarten oder für eine weitere Runde nutzt du die Spielbuttons.
+Mit der Tastatur oder dem Sprung-Button früh loslassen für einen kleineren Sprung, länger halten für einen höheren. **Jeder Sprung braucht einen neuen Tastendruck, Tipp oder Wischer.** Kein automatisches Bunny-Hopping. Zum Fortsetzen, Neustarten oder für eine weitere Runde nutzt du die Spielbuttons.
+
+Ein ruhiger Kontakt im Spielfeld löst nach einer kurzen **Gestenerkennung von 80 ms** einen vollen Sprung aus, ohne auf das Loslassen zu warten. Ein noch kürzerer Tipp springt beim Loslassen. Beginne eine Wischbewegung innerhalb dieses Fensters: Mehr als 10 CSS-Pixel Bewegung verwerfen den geplanten Sprung, sodass du den Abwärtswischer ohne vorherigen Sprung vervollständigen kannst. Bleibt der Finger länger ruhig, ist der Sprung bereits ausgelöst; ein erst danach begonnener Wischer kann ihn nicht rückgängig machen. Die Pfeil-Buttons reagieren weiterhin sofort beim Berühren.
 
 ## Spielanleitung
 
