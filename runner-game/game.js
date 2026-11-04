@@ -1,24 +1,24 @@
 (() => {
-  const game = document.querySelector("#dino-game");
+  const game = document.querySelector("#runner-game");
   if (!game) return;
-  const stage = game.querySelector("#dino-runner");
-  const canvas = game.querySelector("#dino-canvas");
-  const status = game.querySelector("#dino-status");
-  const score = game.querySelector("#dino-score");
-  const highScore = game.querySelector("#dino-highscore");
-  const characterSwitch = game.querySelector("#dino-character-switch");
+  const stage = game.querySelector("#runner-stage");
+  const canvas = game.querySelector("#runner-canvas");
+  const status = game.querySelector("#runner-status");
+  const score = game.querySelector("#runner-score");
+  const highScore = game.querySelector("#runner-highscore");
+  const characterSwitch = game.querySelector("#runner-character-switch");
   const characterOptions = characterSwitch.querySelectorAll("input");
   let character = FelixRunnerCharacter;
   let highScoreKey = character.highScoreKey;
-  const toggle = game.querySelector("#dino-toggle");
-  const restart = game.querySelector("#dino-restart");
-  const jump = game.querySelector("#dino-jump");
-  const duck = game.querySelector("#dino-duck");
-  const result = game.querySelector("#dino-result");
-  const resultTitle = game.querySelector("#dino-result-title");
-  const resultDetail = game.querySelector("#dino-result-detail");
-  const endless = game.querySelector("#dino-endless");
-  const help = document.querySelector("#dino-help");
+  const toggle = game.querySelector("#runner-toggle");
+  const restart = game.querySelector("#runner-restart");
+  const jump = game.querySelector("#runner-jump");
+  const duck = game.querySelector("#runner-duck");
+  const result = game.querySelector("#runner-result");
+  const resultTitle = game.querySelector("#runner-result-title");
+  const resultDetail = game.querySelector("#runner-result-detail");
+  const endless = game.querySelector("#runner-endless");
+  const help = document.querySelector("#runner-help");
   const guide = document.querySelector("#runner-guide");
   const guideClose = guide.querySelector("#runner-guide-close");
   const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)");
@@ -42,7 +42,7 @@
   function updateCharacter() {
     characterSwitch.dataset.character = character.id;
     for (const option of characterOptions) option.checked = option.value === character.id;
-    game.querySelector("#dino-title").setAttribute("aria-label", character.title);
+    game.querySelector("#runner-title").setAttribute("aria-label", character.title);
     stage.setAttribute(
       "aria-label",
       character.label +
@@ -281,7 +281,7 @@
     if (state !== "running" || jumpInputs.has(source)) return;
     jumpInputs.add(source);
     jump.dataset.pressed = "true";
-    runner?.holdJump();
+    runner?.jump();
   }
   function endJump(source) {
     jumpInputs.delete(source);

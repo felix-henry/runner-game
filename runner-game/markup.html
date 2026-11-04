@@ -1,10 +1,16 @@
 <!-- Shared runner controls and instructions. -->
-<section class="dino-game" id="dino-game" aria-labelledby="dino-title" aria-busy="true" hidden="">
-  <div class="dino-heading">
-    <div class="dino-title">
+<section
+  class="runner-game"
+  id="runner-game"
+  aria-labelledby="runner-title"
+  aria-busy="true"
+  hidden=""
+>
+  <div class="runner-heading">
+    <div class="runner-title">
       <fieldset
         class="runner-character-switch"
-        id="dino-character-switch"
+        id="runner-character-switch"
         data-character="fox"
         aria-label="Spielfigur"
         disabled=""
@@ -24,72 +30,72 @@
           <span>Dino</span>
         </label>
       </fieldset>
-      <h2 id="dino-title" aria-label="Fox Run">Run</h2>
+      <h2 id="runner-title" aria-label="Fox Run">Run</h2>
     </div>
-    <p class="mono" id="dino-status" role="status">Lädt …</p>
+    <p class="mono" id="runner-status" role="status">Lädt …</p>
   </div>
-  <dl class="dino-stats mono">
+  <dl class="runner-stats mono">
     <div>
       <dt>Punkte</dt>
-      <dd id="dino-score">00000</dd>
+      <dd id="runner-score">00000</dd>
     </div>
     <div>
       <dt>Highscore</dt>
-      <dd id="dino-highscore">00000</dd>
+      <dd id="runner-highscore">00000</dd>
     </div>
   </dl>
   <div
-    class="dino-runner"
-    id="dino-runner"
+    class="runner-stage"
+    id="runner-stage"
     tabindex="0"
     role="group"
     aria-label="Fuchs-Spiel: Leertaste oder Pfeil nach oben zum Springen, Pfeil nach unten zum Ducken, Escape zum Pausieren. Bei Touch nach oben wischen zum Springen, nach unten zum Ducken."
     aria-keyshortcuts="Space ArrowUp ArrowDown Escape"
   >
     <canvas
-      id="dino-canvas"
+      id="runner-canvas"
       width="600"
       height="200"
       role="img"
       aria-label="Spielfeld mit laufendem Fuchs, Igeln, Felsen und fliegenden Vögeln"
     ></canvas>
   </div>
-  <div class="runner-result" id="dino-result" hidden="">
+  <div class="runner-result" id="runner-result" hidden="">
     <div>
-      <h3 id="dino-result-title" tabindex="-1">Du hast das Ziel erreicht!</h3>
-      <p id="dino-result-detail"></p>
+      <h3 id="runner-result-title" tabindex="-1">Du hast das Ziel erreicht!</h3>
+      <p id="runner-result-detail"></p>
     </div>
-    <button class="btn btn-primary" id="dino-endless" type="button">
+    <button class="btn btn-primary" id="runner-endless" type="button">
       <svg class="icon" aria-hidden="true">
-        <use href="/404/assets/runner-icons.svg#play"></use>
+        <use href="assets/runner-icons.svg#play"></use>
       </svg>
       <span>Endless starten</span>
     </button>
   </div>
-  <div class="dino-toolbar">
-    <div class="dino-playback">
-      <button class="btn btn-primary" id="dino-toggle" type="button" disabled="">
+  <div class="runner-toolbar">
+    <div class="runner-playback">
+      <button class="btn btn-primary" id="runner-toggle" type="button" disabled="">
         <svg class="icon" aria-hidden="true">
-          <use href="/404/assets/runner-icons.svg#play"></use></svg
+          <use href="assets/runner-icons.svg#play"></use></svg
         ><span>Starten</span>
       </button>
       <button
         class="icon-button"
-        id="dino-restart"
+        id="runner-restart"
         type="button"
         aria-label="Spiel neu starten"
         data-tooltip="Neu starten"
         disabled=""
       >
         <svg class="icon" aria-hidden="true">
-          <use href="/404/assets/runner-icons.svg#rotate-ccw"></use>
+          <use href="assets/runner-icons.svg#rotate-ccw"></use>
         </svg>
       </button>
     </div>
-    <div class="dino-movement" role="group" aria-label="Spielfigur">
+    <div class="runner-movement" role="group" aria-label="Spielfigur">
       <button
         class="icon-button"
-        id="dino-jump"
+        id="runner-jump"
         type="button"
         aria-label="Springen"
         aria-keyshortcuts="Space ArrowUp"
@@ -97,12 +103,12 @@
         disabled=""
       >
         <svg class="icon" aria-hidden="true">
-          <use href="/404/assets/runner-icons.svg#arrow-up"></use>
+          <use href="assets/runner-icons.svg#arrow-up"></use>
         </svg>
       </button>
       <button
         class="icon-button"
-        id="dino-duck"
+        id="runner-duck"
         type="button"
         aria-label="Ducken"
         aria-pressed="false"
@@ -111,7 +117,7 @@
         disabled=""
       >
         <svg class="icon" aria-hidden="true">
-          <use href="/404/assets/runner-icons.svg#arrow-down"></use>
+          <use href="assets/runner-icons.svg#arrow-down"></use>
         </svg>
       </button>
     </div>
@@ -120,7 +126,7 @@
 <div class="runner-help-row" hidden="">
   <button
     class="runner-help-link"
-    id="dino-help"
+    id="runner-help"
     type="button"
     aria-haspopup="dialog"
     aria-controls="runner-guide"
@@ -143,7 +149,7 @@
       data-tooltip="Schließen"
       autofocus=""
     >
-      <svg class="icon" aria-hidden="true"><use href="/404/assets/runner-icons.svg#x"></use></svg>
+      <svg class="icon" aria-hidden="true"><use href="assets/runner-icons.svg#x"></use></svg>
     </button>
   </header>
   <div class="runner-guide-body" tabindex="0" role="region" aria-label="Spielregeln">
@@ -192,9 +198,9 @@
       <h3 id="runner-guide-common">In beiden Varianten</h3>
       <figure class="runner-guide-obstacle">
         <img
-          src="/404/assets/rock-light.png"
-          data-guide-light="/404/assets/rock-light.png"
-          data-guide-dark="/404/assets/rock-dark.png"
+          src="assets/rock-light.png"
+          data-guide-light="assets/rock-light.png"
+          data-guide-dark="assets/rock-dark.png"
           data-guide-image=""
           width="104"
           height="104"
@@ -218,9 +224,9 @@
       <div class="runner-guide-obstacles">
         <figure class="runner-guide-obstacle">
           <img
-            src="/404/assets/hedgehog-light.png"
-            data-guide-light="/404/assets/hedgehog-light.png"
-            data-guide-dark="/404/assets/hedgehog-dark.png"
+            src="assets/hedgehog-light.png"
+            data-guide-light="assets/hedgehog-light.png"
+            data-guide-dark="assets/hedgehog-dark.png"
             data-guide-image=""
             width="104"
             height="104"
@@ -238,9 +244,9 @@
         </figure>
         <figure class="runner-guide-obstacle">
           <img
-            src="/404/assets/bird-light.png"
-            data-guide-light="/404/assets/bird-light.png"
-            data-guide-dark="/404/assets/bird-dark.png"
+            src="assets/bird-light.png"
+            data-guide-light="assets/bird-light.png"
+            data-guide-dark="assets/bird-dark.png"
             data-guide-image=""
             width="104"
             height="104"
@@ -267,9 +273,9 @@
       <div class="runner-guide-obstacles">
         <figure class="runner-guide-obstacle">
           <img
-            src="/404/assets/land-dino-light.png"
-            data-guide-light="/404/assets/land-dino-light.png"
-            data-guide-dark="/404/assets/land-dino-dark.png"
+            src="assets/land-dino-light.png"
+            data-guide-light="assets/land-dino-light.png"
+            data-guide-dark="assets/land-dino-dark.png"
             data-guide-image=""
             width="104"
             height="104"
@@ -284,9 +290,9 @@
         </figure>
         <figure class="runner-guide-obstacle">
           <img
-            src="/404/assets/pterosaur-light.png"
-            data-guide-light="/404/assets/pterosaur-light.png"
-            data-guide-dark="/404/assets/pterosaur-dark.png"
+            src="assets/pterosaur-light.png"
+            data-guide-light="assets/pterosaur-light.png"
+            data-guide-dark="assets/pterosaur-dark.png"
             data-guide-image=""
             width="104"
             height="104"
@@ -303,9 +309,9 @@
         </figure>
         <figure class="runner-guide-obstacle">
           <img
-            src="/404/assets/meteor-light.png"
-            data-guide-light="/404/assets/meteor-light.png"
-            data-guide-dark="/404/assets/meteor-dark.png"
+            src="assets/meteor-light.png"
+            data-guide-light="assets/meteor-light.png"
+            data-guide-dark="assets/meteor-dark.png"
             data-guide-image=""
             width="104"
             height="104"
@@ -345,9 +351,9 @@
       <div class="runner-guide-worlds">
         <figure>
           <img
-            src="/404/assets/fox-endless-light.png"
-            data-guide-light="/404/assets/fox-endless-light.png"
-            data-guide-dark="/404/assets/fox-endless-dark.png"
+            src="assets/fox-endless-light.png"
+            data-guide-light="assets/fox-endless-light.png"
+            data-guide-dark="assets/fox-endless-dark.png"
             data-guide-image=""
             width="320"
             height="200"
@@ -365,9 +371,9 @@
         </figure>
         <figure>
           <img
-            src="/404/assets/dino-endless-light.png"
-            data-guide-light="/404/assets/dino-endless-light.png"
-            data-guide-dark="/404/assets/dino-endless-dark.png"
+            src="assets/dino-endless-light.png"
+            data-guide-light="assets/dino-endless-light.png"
+            data-guide-dark="assets/dino-endless-dark.png"
             data-guide-image=""
             width="320"
             height="200"

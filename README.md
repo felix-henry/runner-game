@@ -150,11 +150,11 @@ assets/          Control icons and guide illustrations
 docs/            Preview images for the READMEs only
 ```
 
-The shared [game template](runner-game/markup.html) is used by both the demo and the website build. `index.html`, `demo.css`, `demo.js` and `serve.mjs` provide the standalone preview. The server only exposes the required files and license text, not Git metadata or website source files. Paths under `/404/assets/` resolve to local assets. No external website icon set is needed.
+The shared [game template](runner-game/markup.html) is used by both the demo and the website build. Its character-neutral `runner-*` controls use relative `assets/` paths, with no dependency on the website's 404 directory. `index.html`, `demo.css`, `demo.js` and `serve.mjs` provide the standalone preview using those paths directly, without 404 aliases. The server only exposes the required files and license text, not Git metadata or website source files. No external website icon set is needed.
 
 In the website repository, this source lives under `404/`. The error page `404/404.html` belongs only to the website repository. The game repository contains no website navigation, footer or error page.
 
-The website build also embeds the same game at `/projekte/minigames/runner-game`. The `/projekte/minigames` overview links to each game's own page through tiles and does not load the game itself. The build adds content hashes to CSS and JavaScript and copies [LICENSE.txt](LICENSE.txt) unchanged to `/404/LICENSE.txt`. The regular game page returns HTTP 200; unknown website addresses return HTTP 404. The overview and game page remain excluded from search indexing. The demo server, READMEs, README previews, tests and Git directories are not published with the website.
+The website build also embeds the same game at `/projekte/minigames/runner-game`. The `/projekte/minigames` overview links to each game's own page through tiles and does not load the game itself. Only the host build resolves the template's relative asset references to `/404/assets/`. It adds content hashes to CSS and JavaScript and copies [LICENSE.txt](LICENSE.txt) unchanged to `/404/LICENSE.txt`. The regular game page returns HTTP 200; unknown website addresses return HTTP 404. The overview and game page remain excluded from search indexing. The demo server, READMEs, README previews, tests and Git directories are not published with the website.
 
 ### Maintaining the documentation
 

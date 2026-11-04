@@ -39,7 +39,7 @@ test("demo serves only game assets and keeps website pages and Git metadata priv
     const response = await fetch(origin);
     assert.equal(response.status, 200);
     const html = await response.text();
-    assert.equal((html.match(/id="dino-game"/g) || []).length, 1);
+    assert.equal((html.match(/id="runner-game"/g) || []).length, 1);
     assert.ok(html.includes('id="runner-guide"'));
     assert.ok(!html.includes("<!-- runner-game -->"));
     assert.ok(!html.includes("404 / Abseits der Route"));
@@ -48,15 +48,18 @@ test("demo serves only game assets and keeps website pages and Git metadata priv
       "/demo.js",
       "/runner-game/runner.css",
       "/runner-game/engine.js",
-      "/404/runner-game/game.js",
-      "/404/assets/runner-icons.svg",
-      "/404/assets/fox-endless-light.png",
+      "/runner-game/game.js",
+      "/assets/runner-icons.svg",
+      "/assets/fox-endless-light.png",
       "/LICENSE.txt",
-      "/404/LICENSE.txt",
     ])
       assert.equal((await fetch(origin + path)).status, 200, path);
     for (const path of [
       "/404.html",
+      "/404/LICENSE.txt",
+      "/404/runner-game/game.js",
+      "/404/assets/runner-icons.svg",
+      "/404/assets/fox-endless-light.png",
       "/.git/config",
       "/404/.git/config",
       "/../.git/config",
@@ -98,7 +101,7 @@ test("game controls use six self-contained original geometric symbols", async ()
   assert.equal(references.length, 6);
   for (const href of references) {
     const [file, id] = href.split("#");
-    assert.equal(file, "/404/assets/runner-icons.svg");
+    assert.equal(file, "assets/runner-icons.svg");
     assert.ok(symbols.includes(id));
   }
   await assert.rejects(readFile(new URL("../assets/LUCIDE-LICENSE.txt", import.meta.url)), {

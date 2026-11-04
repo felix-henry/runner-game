@@ -3,7 +3,7 @@
   top: calc(100% + 10px);
   bottom: auto;
 }
-.dino-game {
+.runner-game {
   max-width: 680px;
   margin: 36px auto 0;
   padding: 20px 14px 14px;
@@ -11,38 +11,38 @@
   border-radius: var(--radius);
   background: var(--surface);
 }
-.dino-heading,
-.dino-toolbar,
-.dino-playback,
-.dino-movement {
+.runner-heading,
+.runner-toolbar,
+.runner-playback,
+.runner-movement {
   display: flex;
   align-items: center;
   gap: 0.3rem;
 }
-.dino-heading,
-.dino-toolbar {
+.runner-heading,
+.runner-toolbar {
   justify-content: space-between;
 }
-.dino-toolbar {
+.runner-toolbar {
   display: grid;
   grid-template-columns: 1fr;
   gap: 12px;
 }
-.dino-playback {
+.runner-playback {
   justify-content: space-between;
 }
-.dino-movement {
+.runner-movement {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
-.dino-heading {
+.runner-heading {
   min-height: 44px;
   flex-wrap: wrap;
   gap: 1rem;
   padding-bottom: 8px;
 }
-.dino-stats {
+.runner-stats {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -52,7 +52,7 @@
   font-size: 0.75rem;
   font-variant-numeric: tabular-nums;
 }
-.dino-stats div {
+.runner-stats div {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -60,10 +60,10 @@
   min-width: 0;
   max-width: 100%;
 }
-.dino-stats dt {
+.runner-stats dt {
   color: var(--text-soft);
 }
-.dino-stats dd {
+.runner-stats dd {
   min-width: 7ch;
   max-width: 100%;
   margin: 0;
@@ -71,19 +71,19 @@
   text-align: right;
   overflow-wrap: anywhere;
 }
-.dino-heading h2 {
+.runner-heading h2 {
   margin: 0;
   font-size: 0.95rem;
   font-weight: 650;
 }
-.dino-title {
+.runner-title {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   min-width: 0;
   max-width: 100%;
 }
-.dino-title h2 {
+.runner-title h2 {
   flex: none;
   white-space: nowrap;
 }
@@ -145,54 +145,54 @@
 .runner-character-switch:disabled label {
   cursor: not-allowed;
 }
-.dino-heading p {
+.runner-heading p {
   margin: 0;
   color: var(--text-soft);
   font-size: 0.7rem;
   text-align: right;
 }
-.dino-runner {
+.runner-stage {
   width: 100%;
   max-width: 600px;
   height: 200px;
   margin: 8px auto 20px;
   touch-action: manipulation;
 }
-.dino-runner canvas {
+.runner-stage canvas {
   display: block;
   width: 100%;
   height: 200px;
   image-rendering: pixelated;
 }
-.dino-runner[data-swipe-controls] {
+.runner-stage[data-swipe-controls] {
   touch-action: pan-x pinch-zoom;
   -webkit-user-select: none;
   user-select: none;
 }
-.dino-runner[data-pointer-focus]:focus {
+.runner-stage[data-pointer-focus]:focus {
   outline: none;
 }
-.dino-game button:disabled {
+.runner-game button:disabled {
   cursor: default;
   color: var(--text-soft);
   opacity: 0.6;
 }
-.dino-game .icon-button {
+.runner-game .icon-button {
   border-color: var(--line);
 }
-.dino-toolbar .btn {
+.runner-toolbar .btn {
   width: 142px;
   min-width: 142px;
   flex: 0 0 142px;
   padding-inline: 0.85rem;
 }
-.dino-movement .icon-button {
+.runner-movement .icon-button {
   width: 100%;
   border-color: var(--line);
   touch-action: none;
   transition-duration: 80ms;
 }
-.dino-movement .icon-button:enabled:is(:active, [data-pressed="true"], [aria-pressed="true"]) {
+.runner-movement .icon-button:enabled:is(:active, [data-pressed="true"], [aria-pressed="true"]) {
   background: var(--surface-soft);
   border-color: var(--accent);
   color: var(--accent-dark);
@@ -216,7 +216,7 @@
   font-size: 1rem;
   line-height: 1.4;
 }
-#dino-result-title:focus {
+#runner-result-title:focus {
   outline: none;
 }
 .runner-result p {
@@ -407,31 +407,31 @@ html:has(.runner-guide[open]) {
   }
 }
 @media (min-width: 381px) {
-  .dino-toolbar {
+  .runner-toolbar {
     display: flex;
     gap: 0.3rem;
   }
-  .dino-playback {
+  .runner-playback {
     justify-content: normal;
   }
-  .dino-movement {
+  .runner-movement {
     display: flex;
     gap: 0.3rem;
   }
-  .dino-movement .icon-button {
+  .runner-movement .icon-button {
     width: 44px;
   }
 }
 @media (min-width: 541px) {
-  .dino-game {
+  .runner-game {
     padding-inline: 24px;
   }
   .runner-help-row {
     padding-inline: 25px;
   }
-  .dino-toolbar,
-  .dino-playback,
-  .dino-movement {
+  .runner-toolbar,
+  .runner-playback,
+  .runner-movement {
     gap: 0.6rem;
   }
 }

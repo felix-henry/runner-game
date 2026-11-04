@@ -1,4 +1,4 @@
-// Original, DOM-independent game rules for the site's small 404 runner.
+// Original, DOM-independent game rules shared by Fox Run and Dino Run.
 globalThis.FelixRunner = class {
   static ground = 168;
   static height = 200;
@@ -10,7 +10,7 @@ globalThis.FelixRunner = class {
   static emergenceDuration = 2.4;
   static warmupDuration = 6;
   static birdProfiles = {
-    high: { kind: "bird", flight: "high", width: 44, height: 32, elevation: 64 },
+    high: { kind: "bird", width: 44, height: 32, elevation: 64 },
   };
 
   static paceAt(points) {
@@ -141,7 +141,6 @@ globalThis.FelixRunner = class {
     this.elapsed = 0;
     this.distance = mode === "endless" ? FelixRunner.goal * 12 : 0;
     this.player = { altitude: 0, velocity: 0 };
-    this.jumpHeld = false;
     this.jumpsUsed = 0;
     this.duckHeld = false;
     this.obstacles = [];
@@ -200,14 +199,7 @@ globalThis.FelixRunner = class {
     this.player.altitude = Math.max(0.01, this.player.altitude);
   }
 
-  holdJump() {
-    if (this.state !== "running") return;
-    this.jumpHeld = true;
-    this.jump();
-  }
-
   releaseJump() {
-    this.jumpHeld = false;
     const limit = this.jumpsUsed === 2 ? 460 : 410;
     if (this.player.velocity > limit) this.player.velocity = limit;
   }
@@ -253,7 +245,6 @@ globalThis.FelixRunner = class {
     const height = profile?.height ?? 25 + Math.floor(this.random() * 9);
     this.obstacles.push({
       kind: profile?.kind ?? "rock",
-      flight: profile?.flight,
       x: this.width + 28,
       y: profile?.fallSpeed ? -height : FelixRunner.ground - (profile?.elevation ?? height),
       width: profile?.width ?? 27 + Math.floor(this.random() * 10),
@@ -340,7 +331,6 @@ globalThis.FelixRunner = class {
         if (FelixRunnerSprites.overlaps(player, this.obstacleBounds(obstacle))) {
           this.crashPose = this.playerPose;
           this.state = "crashed";
-          this.jumpHeld = false;
           this.duckHeld = false;
           break;
         }

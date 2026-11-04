@@ -51,7 +51,7 @@
     highScoreKey: "felixhenry-dino-highscore",
     maxJumps: 2,
     lowObstacle: { kind: "landDino", width: 42, height: 30, elevation: 30 },
-    highObstacle: { kind: "pterosaur", flight: "high", width: 80, height: 88, elevation: 124 },
+    highObstacle: { kind: "pterosaur", width: 80, height: 88, elevation: 124 },
     meteorObstacle: { kind: "meteor", width: 36, height: 64, fallSpeed: 240 },
     obstaclePattern: ["rock", "low", "rock", "high", "meteor", "low", "high"],
     art: {

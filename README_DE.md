@@ -148,11 +148,11 @@ assets/          Bedien-Icons und Anleitungsbilder
 docs/            Vorschaugrafiken nur für diese README
 ```
 
-Die gemeinsame [Spielvorlage](runner-game/markup.html) wird sowohl von der Demo als auch vom Website-Build eingesetzt. `index.html`, `demo.css`, `demo.js` und `serve.mjs` bilden die eigenständige Vorschau. Der Server gibt nur die benötigten Dateien und den Lizenztext frei, weder Git-Metadaten noch Website-Quelldateien. Pfade unter `/404/assets/` werden dabei auf lokale Assets aufgelöst. Ein fremdes Website-Iconset wird nicht benötigt.
+Die gemeinsame [Spielvorlage](runner-game/markup.html) wird sowohl von der Demo als auch vom Website-Build eingesetzt. Ihre figurenneutralen `runner-*`-Bedienelemente verwenden relative `assets/`-Pfade, ohne Abhängigkeit vom 404-Ordner der Website. `index.html`, `demo.css`, `demo.js` und `serve.mjs` bilden die eigenständige Vorschau und verwenden diese Pfade direkt, ohne 404-Aliase. Der Server gibt nur die benötigten Dateien und den Lizenztext frei, weder Git-Metadaten noch Website-Quelldateien. Ein fremdes Website-Iconset wird nicht benötigt.
 
 Im Website-Repo liegt dieser Quellcode unter `404/`. Die Fehlerseite `404/404.html` gehört nur zum Website-Repo. Das Spiel-Repo enthält keine Website-Navigation, keinen Footer und keine Fehlerseite.
 
-Der Website-Build bindet dasselbe Spiel unter `/projekte/minigames/runner-game` ein. Die Übersicht unter `/projekte/minigames` verlinkt die einzelnen Spiele über Kacheln und lädt das Spiel selbst noch nicht. Der Build versieht CSS und JavaScript mit Content-Hashes und übernimmt [LICENSE.txt](LICENSE.txt) unverändert nach `/404/LICENSE.txt`. Die reguläre Spielseite liefert HTTP 200, unbekannte Website-Adressen HTTP 404. Übersicht und Spielseite bleiben von der Suchindexierung ausgeschlossen. Demo-Server, README, README-Vorschauen, Tests und Git-Verzeichnisse werden nicht veröffentlicht.
+Der Website-Build bindet dasselbe Spiel unter `/projekte/minigames/runner-game` ein. Die Übersicht unter `/projekte/minigames` verlinkt die einzelnen Spiele über Kacheln und lädt das Spiel selbst noch nicht. Erst der Website-Build löst die relativen Asset-Verweise der Vorlage nach `/404/assets/` auf. Er versieht CSS und JavaScript mit Content-Hashes und übernimmt [LICENSE.txt](LICENSE.txt) unverändert nach `/404/LICENSE.txt`. Die reguläre Spielseite liefert HTTP 200, unbekannte Website-Adressen HTTP 404. Übersicht und Spielseite bleiben von der Suchindexierung ausgeschlossen. Demo-Server, README, README-Vorschauen, Tests und Git-Verzeichnisse werden nicht veröffentlicht.
 
 ### Dokumentation pflegen
 
