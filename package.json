@@ -1,10 +1,10 @@
 {
   "name": "@felix-henry/runner-game",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "description": "Original Fox / Dino Run browser minigame with a standalone local demo.",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/felix-henry/runner-game.git"

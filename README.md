@@ -97,7 +97,7 @@ Es werden dafür keine Cookies gesetzt und keine Spielstände an einen Server ge
 
 Die gemeinsame [Spielvorlage](runner-game/markup.html), die Spielstyles und die Spiellogik liegen in [runner-game/](runner-game/). `engine.js` enthält die Regeln, `sprites.js` die gemeinsamen Grafiken und Pixelmasken, `scene.js` zeichnet die Welt und `game.js` verbindet die Steuerung. Die beiden Figuren liegen in `runner-game/characters/`. Die Illustrationen für Overlay und README liegen in [assets/](assets/). Sie wurden aus den Original-Sprites und -Szenen exportiert und liegen jeweils passend zu Light- und Darkmode vor. Bei Änderungen an den Spielgrafiken auch diese Exporte aktualisieren. Das Overlay startet keine eigene Animation.
 
-`index.html`, `demo.css`, `demo.js` und `serve.mjs` bilden die kleine eigenständige Vorschau. Der Server setzt die gemeinsame Spielvorlage ein und stellt nur die benötigten Spiel- und Bilddateien bereit. Die Vorlage nutzt die bestehenden Website-URLs für Icons und Anleitungsbilder; der Demo-Server löst sie auf die lokalen Assets auf.
+`index.html`, `demo.css`, `demo.js` und `serve.mjs` bilden die kleine eigenständige Vorschau. Der Server setzt die gemeinsame Spielvorlage ein und stellt nur die benötigten Spiel- und Bilddateien bereit. Die Vorlage nutzt für die eigenen Icons und Anleitungsbilder Pfade unter `/404/assets/`; der Demo-Server löst diese auf die lokalen Assets auf. Das Website-Iconset wird nicht benötigt.
 
 Im Website-Repo liegt dieser Spiel-Quellcode unter `404/`. Die Fehlerseite `404/404.html` gehört nur zum Website-Repo und ist nicht Teil des eigenständigen Spiel-Repos. Der Website-Build setzt die Spielvorlage auch unter `/projekte/minigames` ein, versieht CSS und JavaScript mit Content-Hashes und veröffentlicht weder Demo-Server noch Tests oder Git-Verzeichnisse. Die reguläre Spielseite liefert HTTP 200, unbekannte Website-Adressen HTTP 404. Beide bleiben von der Suchindexierung ausgeschlossen.
 
@@ -105,6 +105,10 @@ Diese README bleibt im Repository und wird nicht nach `dist` kopiert. Änderunge
 
 ## Rechte und Abhängigkeiten
 
-Spielcode und Pixelgrafiken wurden eigenständig umgesetzt; es wird kein extrahierter Chromium-Runner verwendet. Für diese eigenen Dateien wurde bisher keine offene Lizenz festgelegt. Die öffentliche Sichtbarkeit des Repositories ist keine zusätzliche Nutzungslizenz.
+Spielcode, Originalgrafiken, Bedien-Icons und Dokumentation dieses Spielprojekts stehen unter der [MIT-Lizenz](LICENSE.txt), Copyright (c) 2026 Felix Henry. Es wird kein extrahierter Chromium-Runner verwendet.
 
-Die sechs Bedien-Icons in `assets/runner-icons.svg` stammen aus dem vorhandenen Lucide-/Feather-Iconset. Die vollständigen zugehörigen ISC-/MIT-Hinweise bleiben in [assets/LUCIDE-LICENSE.txt](assets/LUCIDE-LICENSE.txt) enthalten. Es gibt keine Browser- oder npm-Laufzeitabhängigkeiten.
+Du darfst das Spiel nutzen, verändern, weitergeben und auch kommerziell verwenden. Bei Kopien oder wesentlichen Teilen müssen der Copyright-Hinweis auf Felix Henry und der vollständige Lizenztext erhalten bleiben. Eine sichtbare Namensnennung in der Spieloberfläche ist nicht vorgeschrieben. Maßgeblich ist der englische Lizenztext in `LICENSE.txt`.
+
+Diese Freigabe gilt für das eigenständige Spielprojekt, nicht für die übrige Website felixhenry.de oder deren Fotografien, Texte und Markenassets. Der Website-Build übernimmt den Spiel-Lizenztext unverändert nach `/404/LICENSE.txt`.
+
+Auch die sechs Bedien-Icons in [assets/runner-icons.svg](assets/runner-icons.svg) sind eigenständig gezeichnete geometrische SVG-Symbole. Sie benötigen keine fremden Icondateien. Es gibt keine Browser- oder npm-Laufzeitabhängigkeiten.

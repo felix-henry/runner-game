@@ -18,6 +18,7 @@ const types = {
   ".css": "text/css; charset=utf-8",
   ".png": "image/png",
   ".svg": "image/svg+xml",
+  ".txt": "text/plain; charset=utf-8",
 };
 
 export async function createDemoServer() {
@@ -26,16 +27,14 @@ export async function createDemoServer() {
   if (index.split("<!-- runner-game -->").length !== 2) throw new Error("Missing unique game slot");
   const html = index.replace("<!-- runner-game -->", template);
   const files = new Map();
-  for (const file of ["demo.js", "demo.css", ...code]) files.set("/" + file, file);
-  for (const file of code) files.set("/404/" + file, file);
+  for (const file of ["demo.js", "demo.css", "LICENSE.txt", ...code]) files.set("/" + file, file);
+  for (const file of [...code, "LICENSE.txt"]) files.set("/404/" + file, file);
   for (const file of await readdir(new URL("assets/", import.meta.url), { withFileTypes: true })) {
     if (!file.isFile() || ![".png", ".svg"].includes(extname(file.name))) continue;
     const path = "assets/" + file.name;
     files.set("/" + path, path);
     files.set("/404/" + path, path);
   }
-  // Keep the shared markup's website URLs working without exposing any host-site files.
-  files.set("/assets/icons.svg", "assets/runner-icons.svg");
   return createServer(async (request, response) => {
     response.setHeader("Cache-Control", "no-store");
     response.setHeader("X-Content-Type-Options", "nosniff");

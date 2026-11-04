@@ -49,8 +49,10 @@ test("demo serves only game assets and keeps website pages and Git metadata priv
       "/runner-game/runner.css",
       "/runner-game/engine.js",
       "/404/runner-game/game.js",
-      "/assets/icons.svg",
+      "/404/assets/runner-icons.svg",
       "/404/assets/fox-endless-light.png",
+      "/LICENSE.txt",
+      "/404/LICENSE.txt",
     ])
       assert.equal((await fetch(origin + path)).status, 200, path);
     for (const path of [
@@ -61,6 +63,8 @@ test("demo serves only game assets and keeps website pages and Git metadata priv
       "/%5c..%5c.git/config",
       "/package.json",
       "/README.md",
+      "/assets/icons.svg",
+      "/assets/LUCIDE-LICENSE.txt",
     ])
       assert.equal((await fetch(origin + path)).status, 404, path);
     assert.equal((await fetch(origin, { method: "POST" })).status, 405);
@@ -68,4 +72,35 @@ test("demo serves only game assets and keeps website pages and Git metadata priv
     server.closeAllConnections();
     await new Promise((resolve) => server.close(resolve));
   }
+});
+
+test("the original game is MIT-licensed to Felix Henry and includes the attribution condition", async () => {
+  const metadata = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
+  assert.equal(metadata.license, "MIT");
+  const license = await readFile(new URL("../LICENSE.txt", import.meta.url), "utf8");
+  assert.match(license, /^MIT License\s+Copyright \(c\) \d{4} Felix Henry/);
+  assert.ok(
+    license.includes("The above copyright notice and this permission notice shall be included"),
+  );
+  assert.ok(license.includes('THE SOFTWARE IS PROVIDED "AS IS"'));
+});
+
+test("game controls use six self-contained original geometric symbols", async () => {
+  const icons = await readFile(new URL("../assets/runner-icons.svg", import.meta.url), "utf8");
+  const symbols = [...icons.matchAll(/<symbol id="([^"]+)" viewBox="0 0 24 24">/g)].map(
+    (match) => match[1],
+  );
+  assert.deepEqual(symbols, ["play", "pause", "rotate-ccw", "arrow-up", "arrow-down", "x"]);
+  assert.doesNotMatch(icons, /<(?:use|image|script)\b|\bhref\s*=/);
+  const markup = await readFile(new URL("../runner-game/markup.html", import.meta.url), "utf8");
+  const references = [...markup.matchAll(/<use href="([^"]+)"/g)].map((match) => match[1]);
+  assert.equal(references.length, 6);
+  for (const href of references) {
+    const [file, id] = href.split("#");
+    assert.equal(file, "/404/assets/runner-icons.svg");
+    assert.ok(symbols.includes(id));
+  }
+  await assert.rejects(readFile(new URL("../assets/LUCIDE-LICENSE.txt", import.meta.url)), {
+    code: "ENOENT",
+  });
 });
