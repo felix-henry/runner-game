@@ -1,10 +1,40 @@
-# Fox / Dino Run
+<h1 align="center">Fox / Dino Run</h1>
 
-Ein eigenständig entwickeltes Pixel-Minispiel mit Fuchs und Dino. Es wird auf felixhenry.de auf der 404-Seite und unter **Projekte / Minigames** eingebunden. Beide Seiten nutzen dieselbe Spielvorlage und dieselbe Logik; die Highscores werden im selben Browser gemeinsam verwendet. Der Textbutton **Anleitung** unter den Spielsteuerungen öffnet dieselben Regeln als Overlay mit den Originalgrafiken aller Hindernisse und Vorschauen der beiden Endless-Welten.
+<p align="center">
+  Ein Pixel-Runner mit zwei Figuren und zwei Welten.<br>
+  Erreiche 5.000 Punkte. Entscheide dann, wie weit du noch kommst.
+</p>
 
-## Lokal starten
+<p align="center">
+  <a href="#lokal-spielen">Lokal spielen</a> &middot;
+  <a href="https://github.com/felix-henry/runner-game/releases/tag/v1.0.0">Release 1.0.0</a> &middot;
+  <a href="#spielanleitung">Anleitung</a> &middot;
+  <a href="LICENSE.txt">MIT-Lizenz</a>
+</p>
 
-Voraussetzung: Node.js ab Version 22. Es sind keine Pakete zu installieren.
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/readme-fox-dark.png">
+    <img src="docs/readme-fox-light.png" alt="Fox im Endless-Modus: der Fuchs läuft zwischen Igeln und Vögeln durch den Wald." width="360" height="230">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/readme-dino-dark.png">
+    <img src="docs/readme-dino-light.png" alt="Dino im Endless-Modus: verrußte Dinosaurier in der zerstörten Landschaft nach dem Meteoriteneinschlag." width="360" height="230">
+  </picture>
+</p>
+
+<p align="center"><sub>Eigene Pixelgrafiken. Vanilla JavaScript und Canvas. Keine zusätzlichen Laufzeitpakete.</sub></p>
+
+## Zwei Wege ins Endless
+
+- **Fox:** Springe über Igel und Felsen, ducke dich unter Vögeln hindurch und erreiche deinen Bau. Dahinter wartet der Wald.
+- **Dino:** Weiche Landsauriern, Flugsauriern und Meteoriten aus. Nach dem Einschlag geht es in einer zerstörten Welt weiter.
+
+Beide Figuren haben eigene Hindernisse, Schlussanimationen und Highscores. Die Steuerung funktioniert mit Tastatur, Touch-Gesten und den Buttons unter dem Spielfeld. Eine bebilderte Anleitung ist direkt im Spiel verfügbar.
+
+## Lokal spielen
+
+**Node.js ab Version 22 genügt. Kein `npm install` nötig.**
 
 ```sh
 git clone https://github.com/felix-henry/runner-game.git
@@ -12,103 +42,125 @@ cd runner-game
 npm run dev
 ```
 
-Die Demo ist unter [127.0.0.1:8233](http://127.0.0.1:8233) erreichbar. Alternativ direkt `node serve.mjs` starten. Mit der Umgebungsvariable `PORT` kann ein anderer Port verwendet werden. `npm test` prüft Spielregeln und die Dateifreigabe der Demo. Der lokale Server bindet nur an den eigenen Rechner und gibt weder Git-Metadaten noch Website-Quelldateien aus.
+Öffne **[127.0.0.1:8233](http://127.0.0.1:8233)** im Browser. Die Demo folgt deinem hellen oder dunklen Systemdesign.
 
-Die Demo folgt dem hellen oder dunklen Systemdesign. Spielstände sind an den jeweiligen Browser-Ursprung gebunden; ein Rekord auf Port 8233 ist daher nicht derselbe wie auf felixhenry.de.
-
-## Ziel
-
-Weiche den Hindernissen aus und erreiche **5.000 Punkte**. Der Lauf wird nach und nach schneller. Eine Berührung mit einem Hindernis beendet ihn; transparente Bildbereiche zählen nicht als Kollision.
-
-Das Ziel liegt sowohl lokal als auch auf der veröffentlichten Website bei **5.000 Punkten**. Endless startet anschließend ebenfalls bei 5.000 Punkten.
+`npm test` führt die eigenständigen Prüfungen aus. Alternativ startet `node serve.mjs` die Demo direkt; mit der Umgebungsvariable `PORT` lässt sich der Port ändern. Der Server bindet nur an deinen eigenen Rechner.
 
 ## Steuerung
 
-| Aktion            | Tastatur                                                                                                | Touch und Buttons                                                                                  |
-| ----------------- | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| Springen          | Leertaste oder Pfeil nach oben. Kurz drücken für einen kleinen Sprung, länger halten für einen höheren. | Im Spielfeld tippen oder nach oben wischen; alternativ den oberen Pfeil-Button verwenden.          |
-| Ducken            | Pfeil nach unten gedrückt halten.                                                                       | Nach unten wischen für kurzes Ducken oder den unteren Pfeil-Button gedrückt halten.                |
-| Dino-Doppelsprung | Während des Sprungs erneut Leertaste oder Pfeil nach oben drücken.                                      | Noch in der Luft ein zweites Mal bewusst tippen, nach oben wischen oder den Sprung-Button drücken. |
-| Pause             | Escape.                                                                                                 | Pause-Button.                                                                                      |
-| Fortsetzen        | Den Button „Fortsetzen“ aktivieren.                                                                     | „Fortsetzen“ antippen.                                                                             |
-| Neustart          | Den Neustart-Button aktivieren; nach einer Kollision auch „Nochmal“.                                    | Dieselben Buttons antippen.                                                                        |
+- **Springen:** <kbd>Leertaste</kbd> oder <kbd>↑</kbd>. Bei Touch tippen oder nach oben wischen.
+- **Ducken:** <kbd>↓</kbd> halten. Bei Touch nach unten wischen oder den Ducken-Button halten.
+- **Doppelsprung:** Beim Dino noch in der Luft erneut springen, tippen oder nach oben wischen.
+- **Pause:** <kbd>Esc</kbd> oder Pause-Button.
 
-Jeder Sprung braucht einen neuen Tastendruck, Wischer oder Tipp. Gedrückt halten löst weder automatische Folgesprünge noch den Dino-Doppelsprung aus. Der Fuchs hat nur einen Sprung.
+Kurz springen für einen kleinen Sprung, länger halten für einen höheren. **Jeder Sprung braucht einen neuen Tastendruck, Tipp oder Wischer.** Kein automatisches Bunny-Hopping. Zum Fortsetzen, Neustarten oder für eine weitere Runde nutzt du die Spielbuttons.
 
-**Fox oder Dino** wählst du vor dem Start, während einer Pause oder nach einem Lauf. Ein Wechsel beginnt eine neue Runde mit der ausgewählten Figur. Während des Laufens und der Schluss-/Rückkehranimationen ist der Wechsel gesperrt.
+## Spielanleitung
 
-Beim Öffnen der Anleitung pausiert das Spiel und lässt gehaltene Sprung-/Duck-Eingaben los. Schließen mit Kreuz, Escape oder einem Klick außerhalb setzt es nicht automatisch fort. Auch Fokusverlust, ein versteckter Browser-Tab oder ein nicht mehr sichtbares Spielfeld pausieren den Lauf.
+Weiche den Hindernissen aus und erreiche **5.000 Punkte**. Berührst du ein Hindernis, endet der Lauf. Die Kollision wird anhand der sichtbaren Pixel geprüft; transparente Bildbereiche zählen nicht.
 
-## Hindernisse
+<details>
+<summary><strong>Hindernisse, Sprünge und Tempo</strong></summary>
 
-| Variante | Hindernis           | Was tun?                                                                                                       |
-| -------- | ------------------- | -------------------------------------------------------------------------------------------------------------- |
-| Beide    | Felsen              | Darüber springen. Ducken hilft nicht.                                                                          |
-| Fox      | Igel am Boden       | Rechtzeitig darüber springen.                                                                                  |
-| Fox      | Vogel auf Kopfhöhe  | Am Boden bleiben und ducken, bis er vorbei ist.                                                                |
-| Dino     | Kleiner Landsaurier | Darüber springen.                                                                                              |
-| Dino     | Flugsaurier         | Ducken. Auch der Doppelsprung hilft hier nicht.                                                                |
-| Dino     | Fallender Meteorit  | Mit zwei bewusst ausgelösten Sprüngen ausweichen: abspringen und noch in der Luft den zweiten Sprung auslösen. |
+### Was kommt dir entgegen?
 
-Die Hindernisse in derselben Reihenfolge:
+| Hindernis                                                                                              | Deine Reaktion                                                                 |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| <img src="assets/rock-light.png" width="36" height="36" alt="Fels"> **Felsen** · beide Figuren         | **Springen.** Ducken hilft nicht.                                              |
+| <img src="assets/hedgehog-light.png" width="36" height="36" alt="Igel"> **Igel** · Fox                 | Rechtzeitig **darüber springen**.                                              |
+| <img src="assets/bird-light.png" width="36" height="36" alt="Vogel"> **Vogel** · Fox                   | Am Boden bleiben und **ducken**, bis er vorbei ist.                            |
+| <img src="assets/land-dino-light.png" width="36" height="36" alt="Landsaurier"> **Landsaurier** · Dino | **Darüber springen**.                                                          |
+| <img src="assets/pterosaur-light.png" width="36" height="36" alt="Flugsaurier"> **Flugsaurier** · Dino | **Ducken.** Auch der Doppelsprung hilft nicht.                                 |
+| <img src="assets/meteor-light.png" width="36" height="36" alt="Meteorit"> **Meteorit** · Dino          | **Doppelsprung:** abspringen und noch in der Luft den zweiten Sprung auslösen. |
 
-<img src="assets/rock-light.png" alt="Fels" width="64" height="64">
-<img src="assets/hedgehog-light.png" alt="Igel" width="64" height="64">
-<img src="assets/bird-light.png" alt="Vogel" width="64" height="64">
-<img src="assets/land-dino-light.png" alt="Landsaurier" width="64" height="64">
-<img src="assets/pterosaur-light.png" alt="Flugsaurier" width="64" height="64">
-<img src="assets/meteor-light.png" alt="Meteorit" width="64" height="64">
+Der Fuchs hat einen Sprung. Nur der Dino kann mit zwei bewusst ausgelösten Sprüngen den Meteoriten ausweichen. Gedrückt halten löst weder automatische Folgesprünge noch den Doppelsprung aus. Die normalen Pfeil-Buttons bleiben zusätzlich zu den Touch-Gesten verfügbar; ein Abwärtswischer duckt die Figur kurz.
 
-Meteoriten erscheinen im Dino-Modus ab 250 Punkten. Bei hohem Tempo, ab ungefähr 1,75-facher Geschwindigkeit, verlangsamt sich die Begegnung kurz. So lässt sich der Doppelsprung gezielt timen. Diese Hilfe betrifft nicht die Flugsaurier.
+Meteoriten erscheinen im Dino-Modus **ab 250 Punkten**. Bei hohem Tempo, ab ungefähr **1,75x**, wird die Begegnung kurz langsamer. So lässt sich der Doppelsprung gezielt timen. Diese Hilfe betrifft nicht die Flugsaurier.
 
-Das Tempo bleibt bis 250 Punkte bei 1x, steigt bis 1.000 Punkte auf 1,5x und bis 5.000 Punkte auf maximal 2,5x. Bewegungen und Sprünge werden im selben Verhältnis schneller; die Sprunghöhe wächst dadurch nicht.
+### So steigt das Tempo
 
-## Das Ziel erreichen
+- Bis **250 Punkte:** 1x.
+- Bis **1.000 Punkte:** gleichmäßig auf 1,5x.
+- Bis **5.000 Punkte:** weiter auf maximal 2,5x.
 
-Vor dem Ziel gibt es eine freie Strecke: Das letzte Hindernis verschwindet regulär aus dem Bild und wird nicht plötzlich entfernt. Bis zur Zielpunktzahl steuerst du selbst. Danach übernimmt das Spiel, bremst die Figur ab und spielt die Schlussanimation ohne zusätzliche Punkte ab.
+Bewegungen und Sprünge werden im selben Verhältnis schneller. Die Sprunghöhe wächst dadurch nicht.
+
+### Auswahl und Pause
+
+**Fox oder Dino** wählst du vor dem Start, während einer Pause oder nach einem Lauf. Ein Wechsel beginnt eine neue Runde. Während des Laufens und der Schluss-/Rückkehranimationen bleibt die Auswahl gesperrt.
+
+Beim Öffnen der Anleitung pausiert das Spiel und lässt gehaltene Eingaben los. Schließen mit Kreuz, Escape oder einem Klick außerhalb setzt es **nicht automatisch fort**. Auch Fokusverlust, ein versteckter Tab oder ein nicht mehr sichtbares Spielfeld pausieren den Lauf.
+
+</details>
+
+<details>
+<summary><strong>Das Ziel, Endless und deine Highscores</strong></summary>
+
+### Das Ziel erreichen
+
+Vor **5.000 Punkten** gibt es eine freie Strecke: Das letzte Hindernis verschwindet regulär aus dem Bild, nicht plötzlich beim Erreichen des Ziels. Bis zur Zielpunktzahl steuerst du selbst. Danach übernimmt das Spiel, bremst die Figur ab und spielt die Schlussanimation **ohne zusätzliche Punkte** ab.
 
 - **Fox:** Der Fuchs läuft zum Baum, senkt den Kopf und verschwindet unter den Wurzeln in seinem Bau.
-- **Dino:** Ein großer Meteorit nähert sich, trifft die Laufstrecke und zerstört die Landschaft. Das ist das reguläre Ende, kein Fehler des Spielers.
+- **Dino:** Ein großer Meteorit nähert sich, trifft die Strecke und zerstört die Landschaft. Das ist das reguläre Ende, kein Fehler des Spielers.
 
-Danach erscheint „Du hast das Ziel erreicht!“ mit dem Button **Endless starten**. Das Spiel wartet auf deine Entscheidung.
+Danach erscheint **„Du hast das Ziel erreicht!“**. Erst mit **Endless starten** geht es weiter. Das Ziel liegt lokal und auf der Website bei 5.000 Punkten.
 
-## Endless
+### Noch eine Strecke?
 
-Erst mit **Endless starten** geht es weiter, ab 5.000 Punkten und ohne neues Punktelimit. Die Rückkehranimation selbst gibt keine Punkte. Das Tempo beginnt etwas sanfter bei 1,5x und steigt in den ersten sechs aktiven Spielsekunden wieder auf 2,5x.
+Endless beginnt bei **5.000 Punkten**, ohne neues Punktelimit. Die Rückkehranimation selbst gibt keine Punkte. Das Tempo startet sanfter bei **1,5x** und steigt in den ersten **sechs aktiven Spielsekunden** wieder auf **2,5x**.
 
-- **Fox:** Der Fuchs kommt auf der anderen Seite des Baums aus dem Bau. Während seiner Rückkehr geht der Hintergrund fließend in einen Wald über.
-- **Dino:** Der Dino wird wiederbelebt. Der zerstörte Hintergrund bleibt erhalten; der Dino, die kleinen Landsaurier und die Flugsaurier tragen Ruß- und Aschespuren. Ihre Animationen, Größen und Kollisionspixel bleiben unverändert.
+- **Fox:** Er kommt auf der anderen Seite des Baums aus dem Bau. Während seiner Rückkehr geht der Hintergrund fließend in einen Wald über.
+- **Dino:** Er wird wiederbelebt. Die Landschaft bleibt zerstört; Dino, Landsaurier und Flugsaurier tragen Ruß- und Aschespuren. Ihre Animationen, Größen und Kollisionspixel bleiben unverändert.
 
-Hindernisse und Steuerung behalten ihre Regeln. Nach einer Kollision beginnt **Nochmal** wieder einen normalen Lauf bei null, nicht einen weiteren Endless-Lauf bei 5.000 Punkten. Der Neustart-Button beginnt ebenfalls eine normale Runde. Ein neuer Dino-Lauf stellt die ursprünglichen Farben und die unversehrte Landschaft wieder her.
+Hindernisse und Steuerung behalten ihre Regeln. Nach einer Kollision beginnt **Nochmal** wieder einen normalen Lauf **bei null**, keinen weiteren Endless-Lauf. Der Neustart-Button beginnt ebenfalls eine normale Runde. Ein neuer Dino-Lauf stellt Farben und unversehrte Landschaft wieder her.
 
-<img src="assets/fox-endless-light.png" alt="Fuchs im Endless-Wald" width="320" height="200">
-<img src="assets/dino-endless-light.png" alt="Verrußter Dino in der zerstörten Endless-Welt" width="320" height="200">
+### Highscores bleiben bei dir
 
-## Highscores
-
-Fox und Dino haben getrennte Highscores. Sie bleiben nach einem Neustart erhalten und werden ausschließlich im Browser über Local Storage gespeichert:
+Fox und Dino haben **getrennte Highscores**, gespeichert ausschließlich im Local Storage deines Browsers:
 
 - `felixhenry-fox-highscore`
 - `felixhenry-dino-highscore`
 
-Es werden dafür keine Cookies gesetzt und keine Spielstände an einen Server geschickt. Ist Local Storage gesperrt, bleibt der Rekord nur im Arbeitsspeicher der aktuellen Seite.
+Es gibt dafür **keine Cookies und keine Übertragung an einen Server**. Ist Local Storage gesperrt, bleibt der Rekord nur im Arbeitsspeicher der aktuellen Seite. Browser-Ursprünge haben eigene Speicherbereiche: Die Demo auf Port 8233 teilt ihren Rekord nicht mit felixhenry.de. Auf der Website teilen 404-Seite und Minigames-Seite dagegen dieselben Rekorde.
 
-## Umsetzung und Vorschau
+</details>
 
-Die gemeinsame [Spielvorlage](runner-game/markup.html), die Spielstyles und die Spiellogik liegen in [runner-game/](runner-game/). `engine.js` enthält die Regeln, `sprites.js` die gemeinsamen Grafiken und Pixelmasken, `scene.js` zeichnet die Welt und `game.js` verbindet die Steuerung. Die beiden Figuren liegen in `runner-game/characters/`. Die Illustrationen für Overlay und README liegen in [assets/](assets/). Sie wurden aus den Original-Sprites und -Szenen exportiert und liegen jeweils passend zu Light- und Darkmode vor. Bei Änderungen an den Spielgrafiken auch diese Exporte aktualisieren. Das Overlay startet keine eigene Animation.
+<details>
+<summary><strong>Technik, Dateien und Website-Einbindung</strong></summary>
 
-`index.html`, `demo.css`, `demo.js` und `serve.mjs` bilden die kleine eigenständige Vorschau. Der Server setzt die gemeinsame Spielvorlage ein und stellt nur die benötigten Spiel- und Bilddateien bereit. Die Vorlage nutzt für die eigenen Icons und Anleitungsbilder Pfade unter `/404/assets/`; der Demo-Server löst diese auf die lokalen Assets auf. Das Website-Iconset wird nicht benötigt.
+### Eine Spielkomponente, mehrere Einbindungen
 
-Im Website-Repo liegt dieser Spiel-Quellcode unter `404/`. Die Fehlerseite `404/404.html` gehört nur zum Website-Repo und ist nicht Teil des eigenständigen Spiel-Repos. Der Website-Build setzt die Spielvorlage auch unter `/projekte/minigames` ein, versieht CSS und JavaScript mit Content-Hashes und veröffentlicht weder Demo-Server noch Tests oder Git-Verzeichnisse. Die reguläre Spielseite liefert HTTP 200, unbekannte Website-Adressen HTTP 404. Beide bleiben von der Suchindexierung ausgeschlossen.
+```text
+runner-game/
+  characters/    Figuren, Originalgrafiken und Rekord-Schlüssel
+  engine.js      Spielregeln und Pixelkollisionen
+  sprites.js     Gemeinsame Grafiken und Pixelmasken
+  scene.js       Welten und Animationen
+  game.js        Eingaben und Browser-Anbindung
+  markup.html    Gemeinsame Steuerung und Anleitung
+  runner.css     Spiel- und Anleitungsstyles
+assets/          Bedien-Icons und Anleitungsbilder
+docs/            Vorschaugrafiken nur für diese README
+```
 
-Diese README bleibt im Repository und wird nicht nach `dist` kopiert. Änderungen an Regeln bitte sowohl hier als auch in der Overlay-Anleitung in `runner-game/markup.html` berücksichtigen. Alle Einbindungen erhalten dadurch denselben Stand.
+Die gemeinsame [Spielvorlage](runner-game/markup.html) wird sowohl von der Demo als auch vom Website-Build eingesetzt. `index.html`, `demo.css`, `demo.js` und `serve.mjs` bilden die eigenständige Vorschau. Der Server gibt nur die benötigten Dateien und den Lizenztext frei, weder Git-Metadaten noch Website-Quelldateien. Pfade unter `/404/assets/` werden dabei auf lokale Assets aufgelöst. Ein fremdes Website-Iconset wird nicht benötigt.
 
-## Rechte und Abhängigkeiten
+Im Website-Repo liegt dieser Quellcode unter `404/`. Die Fehlerseite `404/404.html` gehört nur zum Website-Repo. Das Spiel-Repo enthält keine Website-Navigation, keinen Footer und keine Fehlerseite.
 
-Spielcode, Originalgrafiken, Bedien-Icons und Dokumentation dieses Spielprojekts stehen unter der [MIT-Lizenz](LICENSE.txt), Copyright (c) 2026 Felix Henry. Es wird kein extrahierter Chromium-Runner verwendet.
+Der Website-Build bindet dasselbe Spiel auch unter `/projekte/minigames` ein, versieht CSS und JavaScript mit Content-Hashes und übernimmt [LICENSE.txt](LICENSE.txt) unverändert nach `/404/LICENSE.txt`. Die reguläre Spielseite liefert HTTP 200, unbekannte Website-Adressen HTTP 404. Beide bleiben von der Suchindexierung ausgeschlossen. Demo-Server, README, README-Vorschauen, Tests und Git-Verzeichnisse werden nicht veröffentlicht.
 
-Du darfst das Spiel nutzen, verändern, weitergeben und auch kommerziell verwenden. Bei Kopien oder wesentlichen Teilen müssen der Copyright-Hinweis auf Felix Henry und der vollständige Lizenztext erhalten bleiben. Eine sichtbare Namensnennung in der Spieloberfläche ist nicht vorgeschrieben. Maßgeblich ist der englische Lizenztext in `LICENSE.txt`.
+### Dokumentation pflegen
 
-Diese Freigabe gilt für das eigenständige Spielprojekt, nicht für die übrige Website felixhenry.de oder deren Fotografien, Texte und Markenassets. Der Website-Build übernimmt den Spiel-Lizenztext unverändert nach `/404/LICENSE.txt`.
+Die Anleitungsbilder in [assets/](assets/) und die README-Vorschauen in [docs/](docs/) stammen aus den Original-Sprites und -Szenen. Bei Änderungen an den Grafiken auch die Exporte aktualisieren. Das Anleitungs-Overlay startet keine eigene Animation.
 
-Auch die sechs Bedien-Icons in [assets/runner-icons.svg](assets/runner-icons.svg) sind eigenständig gezeichnete geometrische SVG-Symbole. Sie benötigen keine fremden Icondateien. Es gibt keine Browser- oder npm-Laufzeitabhängigkeiten.
+Änderungen an Spielregeln bitte hier und in der Overlay-Anleitung in `runner-game/markup.html` berücksichtigen. So erhalten alle Einbindungen denselben Stand.
+
+</details>
+
+## Lizenz
+
+**MIT License · Copyright (c) 2026 Felix Henry.**
+
+Du darfst das Spiel nutzen, verändern, weitergeben und auch kommerziell verwenden. Bei Kopien oder wesentlichen Teilen müssen Copyright-Hinweis und vollständiger Lizenztext erhalten bleiben. Eine sichtbare Namensnennung im Spiel ist nicht vorgeschrieben. Maßgeblich ist [LICENSE.txt](LICENSE.txt).
+
+Die Lizenz umfasst Code, eigene Pixelgrafiken, Bedien-Icons und Dokumentation dieses Spielprojekts, **nicht die übrige Website felixhenry.de** oder deren Fotografien, Texte und Markenassets. Es wird kein extrahierter Chromium-Runner verwendet.
