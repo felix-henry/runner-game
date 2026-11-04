@@ -1,40 +1,44 @@
 <h1 align="center">Fox / Dino Run</h1>
 
 <p align="center">
-  Ein Pixel-Runner mit zwei Figuren und zwei Welten.<br>
-  Erreiche 5.000 Punkte. Entscheide dann, wie weit du noch kommst.
+  <strong>English (EN)</strong> &middot; <a href="README_DE.md">Deutsch (DE)</a>
 </p>
 
 <p align="center">
-  <a href="#lokal-spielen">Lokal spielen</a> &middot;
+  A pixel runner with two characters and two worlds.<br>
+  Reach 5,000 points. Then see how much further you can go.
+</p>
+
+<p align="center">
+  <a href="#play-locally">Play locally</a> &middot;
   <a href="https://github.com/felix-henry/runner-game/releases/tag/v1.0.0">Release 1.0.0</a> &middot;
-  <a href="#spielanleitung">Anleitung</a> &middot;
-  <a href="LICENSE.txt">MIT-Lizenz</a>
+  <a href="#how-to-play">How to play</a> &middot;
+  <a href="LICENSE.txt">MIT license</a>
 </p>
 
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/readme-fox-dark.png">
-    <img src="docs/readme-fox-light.png" alt="Fox im Endless-Modus: der Fuchs läuft zwischen Igeln und Vögeln durch den Wald." width="360" height="230">
+    <img src="docs/readme-fox-light.png" alt="Fox in Endless mode: a fox runs through the forest, avoiding hedgehogs and birds." width="360" height="230">
   </picture>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/readme-dino-dark.png">
-    <img src="docs/readme-dino-light.png" alt="Dino im Endless-Modus: verrußte Dinosaurier in der zerstörten Landschaft nach dem Meteoriteneinschlag." width="360" height="230">
+    <img src="docs/readme-dino-light.png" alt="Dino in Endless mode: soot-covered dinosaurs in the ruined landscape after the meteor impact." width="360" height="230">
   </picture>
 </p>
 
-<p align="center"><sub>Eigene Pixelgrafiken. Vanilla JavaScript und Canvas. Keine zusätzlichen Laufzeitpakete.</sub></p>
+<p align="center"><sub>Original pixel art. Vanilla JavaScript and Canvas. No additional runtime packages.</sub></p>
 
-## Zwei Wege ins Endless
+## Two paths to Endless
 
-- **Fox:** Springe über Igel und Felsen, ducke dich unter Vögeln hindurch und erreiche deinen Bau. Dahinter wartet der Wald.
-- **Dino:** Weiche Landsauriern, Flugsauriern und Meteoriten aus. Nach dem Einschlag geht es in einer zerstörten Welt weiter.
+- **Fox:** Jump over hedgehogs and rocks, duck under birds and reach your den. The forest awaits on the other side.
+- **Dino:** Dodge land dinosaurs, pterosaurs and meteors. After the impact, continue through a ruined world.
 
-Beide Figuren haben eigene Hindernisse, Schlussanimationen und Highscores. Die Steuerung funktioniert mit Tastatur, Touch-Gesten und den Buttons unter dem Spielfeld. Eine bebilderte Anleitung ist direkt im Spiel verfügbar.
+Each character has its own obstacles, ending sequence and high score. Play with a keyboard, touch gestures or the buttons below the game. An illustrated guide is available in-game.
 
-## Lokal spielen
+## Play locally
 
-**Node.js ab Version 22 genügt. Kein `npm install` nötig.**
+**Node.js 22 or newer is all you need. No `npm install` required.**
 
 ```sh
 git clone https://github.com/felix-henry/runner-game.git
@@ -42,125 +46,127 @@ cd runner-game
 npm run dev
 ```
 
-Öffne **[127.0.0.1:8233](http://127.0.0.1:8233)** im Browser. Die Demo folgt deinem hellen oder dunklen Systemdesign.
+Open **[127.0.0.1:8233](http://127.0.0.1:8233)** in your browser. The demo follows your system's light or dark theme.
 
-`npm test` führt die eigenständigen Prüfungen aus. Alternativ startet `node serve.mjs` die Demo direkt; mit der Umgebungsvariable `PORT` lässt sich der Port ändern. Der Server bindet nur an deinen eigenen Rechner.
+Run `npm test` for the standalone checks. You can also start the demo directly with `node serve.mjs`; set the `PORT` environment variable to use a different port. The server only listens on your own computer.
 
-## Steuerung
+## Controls
 
-- **Springen:** <kbd>Leertaste</kbd> oder <kbd>↑</kbd>. Bei Touch tippen oder nach oben wischen.
-- **Ducken:** <kbd>↓</kbd> halten. Bei Touch nach unten wischen oder den Ducken-Button halten.
-- **Doppelsprung:** Beim Dino noch in der Luft erneut springen, tippen oder nach oben wischen.
-- **Pause:** <kbd>Esc</kbd> oder Pause-Button.
+- **Jump:** <kbd>Space</kbd> or <kbd>↑</kbd>. On touch devices, tap or swipe up.
+- **Duck:** Hold <kbd>↓</kbd>. On touch devices, swipe down or hold the duck button.
+- **Double jump:** With Dino, jump, tap or swipe up again while airborne.
+- **Pause:** <kbd>Esc</kbd> or the pause button.
 
-Kurz springen für einen kleinen Sprung, länger halten für einen höheren. **Jeder Sprung braucht einen neuen Tastendruck, Tipp oder Wischer.** Kein automatisches Bunny-Hopping. Zum Fortsetzen, Neustarten oder für eine weitere Runde nutzt du die Spielbuttons.
+Tap for a short jump; hold for a higher one. **Every jump needs a fresh key press, tap or swipe.** Holding a control does not trigger automatic bunny hopping.
 
-## Spielanleitung
+The game UI is currently in German. Use **Fortsetzen** to resume, the restart button to start over, or **Nochmal** to try again after a collision. **Anleitung** opens the illustrated guide.
 
-Weiche den Hindernissen aus und erreiche **5.000 Punkte**. Berührst du ein Hindernis, endet der Lauf. Die Kollision wird anhand der sichtbaren Pixel geprüft; transparente Bildbereiche zählen nicht.
+## How to play
+
+Dodge the obstacles and reach **5,000 points**. Touching an obstacle ends your run. Collisions use the visible pixels of each sprite; transparent areas do not count.
 
 <details>
-<summary><strong>Hindernisse, Sprünge und Tempo</strong></summary>
+<summary><strong>Obstacles, jumps and speed</strong></summary>
 
-### Was kommt dir entgegen?
+### What is coming your way?
 
-| Hindernis                                                                                              | Deine Reaktion                                                                 |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| <img src="assets/rock-light.png" width="36" height="36" alt="Fels"> **Felsen** · beide Figuren         | **Springen.** Ducken hilft nicht.                                              |
-| <img src="assets/hedgehog-light.png" width="36" height="36" alt="Igel"> **Igel** · Fox                 | Rechtzeitig **darüber springen**.                                              |
-| <img src="assets/bird-light.png" width="36" height="36" alt="Vogel"> **Vogel** · Fox                   | Am Boden bleiben und **ducken**, bis er vorbei ist.                            |
-| <img src="assets/land-dino-light.png" width="36" height="36" alt="Landsaurier"> **Landsaurier** · Dino | **Darüber springen**.                                                          |
-| <img src="assets/pterosaur-light.png" width="36" height="36" alt="Flugsaurier"> **Flugsaurier** · Dino | **Ducken.** Auch der Doppelsprung hilft nicht.                                 |
-| <img src="assets/meteor-light.png" width="36" height="36" alt="Meteorit"> **Meteorit** · Dino          | **Doppelsprung:** abspringen und noch in der Luft den zweiten Sprung auslösen. |
+| Obstacle                                                                                                   | Your move                                                                     |
+| ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| <img src="assets/rock-light.png" width="36" height="36" alt="Rock"> **Rocks** · both characters            | **Jump.** Ducking will not help.                                              |
+| <img src="assets/hedgehog-light.png" width="36" height="36" alt="Hedgehog"> **Hedgehog** · Fox             | **Jump over it** in time.                                                     |
+| <img src="assets/bird-light.png" width="36" height="36" alt="Bird"> **Bird** · Fox                         | Stay on the ground and **duck** until it passes.                              |
+| <img src="assets/land-dino-light.png" width="36" height="36" alt="Land dinosaur"> **Land dinosaur** · Dino | **Jump over it.**                                                             |
+| <img src="assets/pterosaur-light.png" width="36" height="36" alt="Pterosaur"> **Pterosaur** · Dino         | **Duck.** Even a double jump will not clear it.                               |
+| <img src="assets/meteor-light.png" width="36" height="36" alt="Meteor"> **Meteor** · Dino                  | **Double jump:** take off, then trigger the second jump while still airborne. |
 
-Der Fuchs hat einen Sprung. Nur der Dino kann mit zwei bewusst ausgelösten Sprüngen den Meteoriten ausweichen. Gedrückt halten löst weder automatische Folgesprünge noch den Doppelsprung aus. Die normalen Pfeil-Buttons bleiben zusätzlich zu den Touch-Gesten verfügbar; ein Abwärtswischer duckt die Figur kurz.
+Fox has one jump. Only Dino can dodge meteors with two deliberate jumps. Holding a control triggers neither repeated jumps nor a double jump. The arrow buttons remain available alongside touch gestures; swiping down makes the character duck briefly.
 
-Meteoriten erscheinen im Dino-Modus **ab 250 Punkten**. Bei hohem Tempo, ab ungefähr **1,75x**, wird die Begegnung kurz langsamer. So lässt sich der Doppelsprung gezielt timen. Diese Hilfe betrifft nicht die Flugsaurier.
+Meteors appear in Dino mode **from 250 points**. At higher speeds, from around **1.75x**, the encounter briefly slows down so you can time the double jump. This assistance does not apply to pterosaurs.
 
-### So steigt das Tempo
+### How speed increases
 
-- Bis **250 Punkte:** 1x.
-- Bis **1.000 Punkte:** gleichmäßig auf 1,5x.
-- Bis **5.000 Punkte:** weiter auf maximal 2,5x.
+- Up to **250 points:** 1x.
+- Up to **1,000 points:** a steady increase to 1.5x.
+- Up to **5,000 points:** a further increase to a maximum of 2.5x.
 
-Bewegungen und Sprünge werden im selben Verhältnis schneller. Die Sprunghöhe wächst dadurch nicht.
+Movement and jumps speed up together. Jump height does not increase.
 
-### Auswahl und Pause
+### Character selection and pausing
 
-**Fox oder Dino** wählst du vor dem Start, während einer Pause oder nach einem Lauf. Ein Wechsel beginnt eine neue Runde. Während des Laufens und der Schluss-/Rückkehranimationen bleibt die Auswahl gesperrt.
+Choose **Fox or Dino** before starting, while paused or after a run. Switching characters starts a fresh round. The selector is locked while running and during the ending and return sequences.
 
-Beim Öffnen der Anleitung pausiert das Spiel und lässt gehaltene Eingaben los. Schließen mit Kreuz, Escape oder einem Klick außerhalb setzt es **nicht automatisch fort**. Auch Fokusverlust, ein versteckter Tab oder ein nicht mehr sichtbares Spielfeld pausieren den Lauf.
+Opening the guide pauses the game and releases held inputs. Closing it with the cross, Escape or a click outside **does not automatically resume play**. Losing focus, switching to another tab or scrolling the game out of view also pauses the run.
 
 </details>
 
 <details>
-<summary><strong>Das Ziel, Endless und deine Highscores</strong></summary>
+<summary><strong>The goal, Endless and your high scores</strong></summary>
 
-### Das Ziel erreichen
+### Reaching the goal
 
-Vor **5.000 Punkten** gibt es eine freie Strecke: Das letzte Hindernis verschwindet regulär aus dem Bild, nicht plötzlich beim Erreichen des Ziels. Bis zur Zielpunktzahl steuerst du selbst. Danach übernimmt das Spiel, bremst die Figur ab und spielt die Schlussanimation **ohne zusätzliche Punkte** ab.
+Before **5,000 points**, the track clears: the last obstacle leaves the screen normally rather than disappearing when you reach the goal. You remain in control until the target score. The game then takes over, slows the character down and plays the ending **without awarding extra points**.
 
-- **Fox:** Der Fuchs läuft zum Baum, senkt den Kopf und verschwindet unter den Wurzeln in seinem Bau.
-- **Dino:** Ein großer Meteorit nähert sich, trifft die Strecke und zerstört die Landschaft. Das ist das reguläre Ende, kein Fehler des Spielers.
+- **Fox:** The fox walks to the tree, lowers its head and disappears into its den beneath the roots.
+- **Dino:** A large meteor approaches, hits the track and destroys the landscape. This is the normal ending, not a player mistake.
 
-Danach erscheint **„Du hast das Ziel erreicht!“**. Erst mit **Endless starten** geht es weiter. Das Ziel liegt lokal und auf der Website bei 5.000 Punkten.
+The message **Du hast das Ziel erreicht!** means **"You have reached the goal!"**. Choose **Endless starten** to continue. The goal is 5,000 points in both the local demo and the website integration.
 
-### Noch eine Strecke?
+### Keep going?
 
-Endless beginnt bei **5.000 Punkten**, ohne neues Punktelimit. Die Rückkehranimation selbst gibt keine Punkte. Das Tempo startet sanfter bei **1,5x** und steigt in den ersten **sechs aktiven Spielsekunden** wieder auf **2,5x**.
+Endless starts at **5,000 points**, with no further score limit. The return animation does not award points. Speed eases in at **1.5x**, then rises back to **2.5x** over the first **six seconds of active play**.
 
-- **Fox:** Er kommt auf der anderen Seite des Baums aus dem Bau. Während seiner Rückkehr geht der Hintergrund fließend in einen Wald über.
-- **Dino:** Er wird wiederbelebt. Die Landschaft bleibt zerstört; Dino, Landsaurier und Flugsaurier tragen Ruß- und Aschespuren. Ihre Animationen, Größen und Kollisionspixel bleiben unverändert.
+- **Fox:** It emerges from the other side of the tree. During its return, the background smoothly transitions into a forest.
+- **Dino:** It is revived. The landscape stays ruined, and Dino, land dinosaurs and pterosaurs have soot and ash markings. Their animations, sizes and collision pixels remain unchanged.
 
-Hindernisse und Steuerung behalten ihre Regeln. Nach einer Kollision beginnt **Nochmal** wieder einen normalen Lauf **bei null**, keinen weiteren Endless-Lauf. Der Neustart-Button beginnt ebenfalls eine normale Runde. Ein neuer Dino-Lauf stellt Farben und unversehrte Landschaft wieder her.
+Obstacles and controls keep the same rules. After a collision, **Nochmal** starts a normal run **from zero**, not another Endless run. The restart button also starts a normal round. A new Dino run restores the original colors and undamaged landscape.
 
-### Highscores bleiben bei dir
+### Your high scores stay with you
 
-Fox und Dino haben **getrennte Highscores**, gespeichert ausschließlich im Local Storage deines Browsers:
+Fox and Dino have **separate high scores**, stored only in your browser's Local Storage:
 
 - `felixhenry-fox-highscore`
 - `felixhenry-dino-highscore`
 
-Es gibt dafür **keine Cookies und keine Übertragung an einen Server**. Ist Local Storage gesperrt, bleibt der Rekord nur im Arbeitsspeicher der aktuellen Seite. Browser-Ursprünge haben eigene Speicherbereiche: Die Demo auf Port 8233 teilt ihren Rekord nicht mit felixhenry.de. Auf der Website teilen 404-Seite und Minigames-Seite dagegen dieselben Rekorde.
+**No cookies are set and no scores are sent to a server.** If Local Storage is blocked, the record only lasts for the current page session. Browser origins have separate storage: the demo on port 8233 does not share its records with felixhenry.de. On the website, the 404 and Minigames pages do share the same records.
 
 </details>
 
 <details>
-<summary><strong>Technik, Dateien und Website-Einbindung</strong></summary>
+<summary><strong>Technical details, files and website integration</strong></summary>
 
-### Eine Spielkomponente, mehrere Einbindungen
+### One game component, multiple integrations
 
 ```text
 runner-game/
-  characters/    Figuren, Originalgrafiken und Rekord-Schlüssel
-  engine.js      Spielregeln und Pixelkollisionen
-  sprites.js     Gemeinsame Grafiken und Pixelmasken
-  scene.js       Welten und Animationen
-  game.js        Eingaben und Browser-Anbindung
-  markup.html    Gemeinsame Steuerung und Anleitung
-  runner.css     Spiel- und Anleitungsstyles
-assets/          Bedien-Icons und Anleitungsbilder
-docs/            Vorschaugrafiken nur für diese README
+  characters/    Characters, original artwork and high-score keys
+  engine.js      Game rules and pixel collisions
+  sprites.js     Shared artwork and pixel masks
+  scene.js       Worlds and animations
+  game.js        Inputs and browser integration
+  markup.html    Shared controls and guide
+  runner.css     Game and guide styles
+assets/          Control icons and guide illustrations
+docs/            Preview images for the READMEs only
 ```
 
-Die gemeinsame [Spielvorlage](runner-game/markup.html) wird sowohl von der Demo als auch vom Website-Build eingesetzt. `index.html`, `demo.css`, `demo.js` und `serve.mjs` bilden die eigenständige Vorschau. Der Server gibt nur die benötigten Dateien und den Lizenztext frei, weder Git-Metadaten noch Website-Quelldateien. Pfade unter `/404/assets/` werden dabei auf lokale Assets aufgelöst. Ein fremdes Website-Iconset wird nicht benötigt.
+The shared [game template](runner-game/markup.html) is used by both the demo and the website build. `index.html`, `demo.css`, `demo.js` and `serve.mjs` provide the standalone preview. The server only exposes the required files and license text, not Git metadata or website source files. Paths under `/404/assets/` resolve to local assets. No external website icon set is needed.
 
-Im Website-Repo liegt dieser Quellcode unter `404/`. Die Fehlerseite `404/404.html` gehört nur zum Website-Repo. Das Spiel-Repo enthält keine Website-Navigation, keinen Footer und keine Fehlerseite.
+In the website repository, this source lives under `404/`. The error page `404/404.html` belongs only to the website repository. The game repository contains no website navigation, footer or error page.
 
-Der Website-Build bindet dasselbe Spiel auch unter `/projekte/minigames` ein, versieht CSS und JavaScript mit Content-Hashes und übernimmt [LICENSE.txt](LICENSE.txt) unverändert nach `/404/LICENSE.txt`. Die reguläre Spielseite liefert HTTP 200, unbekannte Website-Adressen HTTP 404. Beide bleiben von der Suchindexierung ausgeschlossen. Demo-Server, README, README-Vorschauen, Tests und Git-Verzeichnisse werden nicht veröffentlicht.
+The website build also embeds the same game at `/projekte/minigames`, adds content hashes to CSS and JavaScript, and copies [LICENSE.txt](LICENSE.txt) unchanged to `/404/LICENSE.txt`. The regular game page returns HTTP 200; unknown website addresses return HTTP 404. Both remain excluded from search indexing. The demo server, READMEs, README previews, tests and Git directories are not published with the website.
 
-### Dokumentation pflegen
+### Maintaining the documentation
 
-Die Anleitungsbilder in [assets/](assets/) und die README-Vorschauen in [docs/](docs/) stammen aus den Original-Sprites und -Szenen. Bei Änderungen an den Grafiken auch die Exporte aktualisieren. Das Anleitungs-Overlay startet keine eigene Animation.
+The guide illustrations in [assets/](assets/) and README previews in [docs/](docs/) are rendered from the original sprites and scenes. Update these exports when the artwork changes. The guide overlay does not start its own animation loop.
 
-Änderungen an Spielregeln bitte hier und in der Overlay-Anleitung in `runner-game/markup.html` berücksichtigen. So erhalten alle Einbindungen denselben Stand.
+When game rules change, update both README languages and the overlay guide in `runner-game/markup.html` so all integrations stay consistent.
 
 </details>
 
-## Lizenz
+## License
 
 **MIT License · Copyright (c) 2026 Felix Henry.**
 
-Du darfst das Spiel nutzen, verändern, weitergeben und auch kommerziell verwenden. Bei Kopien oder wesentlichen Teilen müssen Copyright-Hinweis und vollständiger Lizenztext erhalten bleiben. Eine sichtbare Namensnennung im Spiel ist nicht vorgeschrieben. Maßgeblich ist [LICENSE.txt](LICENSE.txt).
+You may use, modify, redistribute and commercially use the game. Copies or substantial portions must retain the copyright notice and full license text. Visible attribution in the game UI is not required. The authoritative terms are in [LICENSE.txt](LICENSE.txt).
 
-Die Lizenz umfasst Code, eigene Pixelgrafiken, Bedien-Icons und Dokumentation dieses Spielprojekts, **nicht die übrige Website felixhenry.de** oder deren Fotografien, Texte und Markenassets. Es wird kein extrahierter Chromium-Runner verwendet.
+The license covers this game's code, original pixel art, control icons and documentation, **not the rest of felixhenry.de** or its photographs, texts and brand assets. No extracted Chromium runner is used.

@@ -63,6 +63,7 @@ test("demo serves only game assets and keeps website pages and Git metadata priv
       "/%5c..%5c.git/config",
       "/package.json",
       "/README.md",
+      "/README_DE.md",
       "/assets/icons.svg",
       "/assets/LUCIDE-LICENSE.txt",
     ])
