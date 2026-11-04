@@ -34,6 +34,7 @@
   let stagePointer = null;
   let touchDuckTimer = 0;
   let touchDuckUntil = 0;
+  const touchIntentDelay = 80;
   const jumpInputs = new Set();
   const duckInputs = new Set();
   const bestScores = new Map();
@@ -319,7 +320,11 @@
     if (!pointer || pointer.type !== "touch" || pointer.id !== event.pointerId) return;
     const dx = event.clientX - pointer.x;
     const dy = event.clientY - pointer.y;
-    if (Math.max(Math.abs(dx), Math.abs(dy)) > 10) pointer.moved = true;
+    if (Math.max(Math.abs(dx), Math.abs(dy)) > 10) {
+      pointer.moved = true;
+      clearTimeout(pointer.jumpTimer);
+      pointer.jumpTimer = 0;
+    }
     if (pointer.action || Math.abs(dy) < 24 || Math.abs(dy) < Math.abs(dx) * 1.25) return;
     event.preventDefault();
     pointer.action = dy < 0 ? "jump" : "duck";
@@ -337,6 +342,7 @@
     const pointer = stagePointer;
     if (!pointer || (event && pointer.id !== event.pointerId)) return;
     stagePointer = null;
+    clearTimeout(pointer.jumpTimer);
     if (stage.hasPointerCapture(pointer.id)) stage.releasePointerCapture(pointer.id);
     if (pointer.type !== "touch") endJump("pointer:stage");
     else if (cancelled) cancelTouchDuck();
@@ -484,9 +490,20 @@
         y: event.clientY,
         moved: false,
         action: null,
+        jumpTimer: 0,
       };
       stage.setPointerCapture(event.pointerId);
       if (event.pointerType !== "touch") beginJump("pointer:stage");
+      else {
+        const pointer = stagePointer;
+        // Reserve a short window for swipes, then jump without waiting for release.
+        pointer.jumpTimer = setTimeout(() => {
+          pointer.jumpTimer = 0;
+          if (stagePointer !== pointer || pointer.action || pointer.moved) return;
+          pointer.action = "jump";
+          touchJump();
+        }, touchIntentDelay);
+      }
     });
     stage.addEventListener("pointermove", moveStagePointer);
     stage.addEventListener("pointerup", (event) => {

@@ -57,7 +57,9 @@ Run `npm test` for the standalone checks. You can also start the demo directly w
 - **Double jump:** With Dino, jump, tap or swipe up again while airborne.
 - **Pause:** <kbd>Esc</kbd> or the pause button.
 
-Tap for a short jump; hold for a higher one. **Every jump needs a fresh key press, tap or swipe.** Holding a control does not trigger automatic bunny hopping.
+With the keyboard or jump button, release early for a shorter jump and hold for a higher one. **Every jump needs a fresh key press, tap or swipe.** Holding a control does not trigger automatic bunny hopping.
+
+A still touch on the playfield triggers one full jump after a short **80 ms gesture window**, without waiting for release. A quicker tap jumps on release. Start a swipe within that window: movement beyond 10 CSS pixels cancels the pending jump, so you can complete the downward swipe without first jumping. A finger held still beyond the window has already committed to jumping; a later swipe cannot undo that jump. The arrow buttons still respond immediately on contact.
 
 The game UI is currently in German. Use **Fortsetzen** to resume, the restart button to start over, or **Nochmal** to try again after a collision. **Anleitung** opens the illustrated guide.
 
