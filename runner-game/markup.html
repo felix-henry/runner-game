@@ -1,0 +1,393 @@
+<!-- Shared runner controls and instructions. -->
+<section class="dino-game" id="dino-game" aria-labelledby="dino-title" aria-busy="true" hidden="">
+  <div class="dino-heading">
+    <div class="dino-title">
+      <fieldset
+        class="runner-character-switch"
+        id="dino-character-switch"
+        data-character="fox"
+        aria-label="Spielfigur"
+        disabled=""
+      >
+        <label>
+          <input
+            class="visually-hidden"
+            type="radio"
+            name="runner-character"
+            value="fox"
+            checked=""
+          />
+          <span>Fox</span>
+        </label>
+        <label>
+          <input class="visually-hidden" type="radio" name="runner-character" value="dino" />
+          <span>Dino</span>
+        </label>
+      </fieldset>
+      <h2 id="dino-title" aria-label="Fox Run">Run</h2>
+    </div>
+    <p class="mono" id="dino-status" role="status">Lädt …</p>
+  </div>
+  <dl class="dino-stats mono">
+    <div>
+      <dt>Punkte</dt>
+      <dd id="dino-score">00000</dd>
+    </div>
+    <div>
+      <dt>Highscore</dt>
+      <dd id="dino-highscore">00000</dd>
+    </div>
+  </dl>
+  <div
+    class="dino-runner"
+    id="dino-runner"
+    tabindex="0"
+    role="group"
+    aria-label="Fuchs-Spiel: Leertaste oder Pfeil nach oben zum Springen, Pfeil nach unten zum Ducken, Escape zum Pausieren. Bei Touch nach oben wischen zum Springen, nach unten zum Ducken."
+    aria-keyshortcuts="Space ArrowUp ArrowDown Escape"
+  >
+    <canvas
+      id="dino-canvas"
+      width="600"
+      height="200"
+      role="img"
+      aria-label="Spielfeld mit laufendem Fuchs, Igeln, Felsen und fliegenden Vögeln"
+    ></canvas>
+  </div>
+  <div class="runner-result" id="dino-result" hidden="">
+    <div>
+      <h3 id="dino-result-title" tabindex="-1">Du hast das Ziel erreicht!</h3>
+      <p id="dino-result-detail"></p>
+    </div>
+    <button class="btn btn-primary" id="dino-endless" type="button">
+      <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#play"></use></svg>
+      <span>Endless starten</span>
+    </button>
+  </div>
+  <div class="dino-toolbar">
+    <div class="dino-playback">
+      <button class="btn btn-primary" id="dino-toggle" type="button" disabled="">
+        <svg class="icon" aria-hidden="true">
+          <use href="/assets/icons.svg#play"></use></svg
+        ><span>Starten</span>
+      </button>
+      <button
+        class="icon-button"
+        id="dino-restart"
+        type="button"
+        aria-label="Spiel neu starten"
+        data-tooltip="Neu starten"
+        disabled=""
+      >
+        <svg class="icon" aria-hidden="true">
+          <use href="/assets/icons.svg#rotate-ccw"></use>
+        </svg>
+      </button>
+    </div>
+    <div class="dino-movement" role="group" aria-label="Spielfigur">
+      <button
+        class="icon-button"
+        id="dino-jump"
+        type="button"
+        aria-label="Springen"
+        aria-keyshortcuts="Space ArrowUp"
+        data-tooltip="Springen"
+        disabled=""
+      >
+        <svg class="icon" aria-hidden="true">
+          <use href="/assets/icons.svg#arrow-up"></use>
+        </svg>
+      </button>
+      <button
+        class="icon-button"
+        id="dino-duck"
+        type="button"
+        aria-label="Ducken"
+        aria-pressed="false"
+        aria-keyshortcuts="ArrowDown"
+        data-tooltip="Ducken"
+        disabled=""
+      >
+        <svg class="icon" aria-hidden="true">
+          <use href="/assets/icons.svg#arrow-down"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+<div class="runner-help-row" hidden="">
+  <button
+    class="runner-help-link"
+    id="dino-help"
+    type="button"
+    aria-haspopup="dialog"
+    aria-controls="runner-guide"
+    disabled=""
+  >
+    Anleitung
+  </button>
+</div>
+<dialog class="runner-guide" id="runner-guide" aria-labelledby="runner-guide-title">
+  <header class="runner-guide-header">
+    <div>
+      <p class="mono">Fox &amp; Dino Run</p>
+      <h2 id="runner-guide-title">Anleitung</h2>
+    </div>
+    <button
+      class="icon-button"
+      id="runner-guide-close"
+      type="button"
+      aria-label="Anleitung schließen"
+      data-tooltip="Schließen"
+      autofocus=""
+    >
+      <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#x"></use></svg>
+    </button>
+  </header>
+  <div class="runner-guide-body" tabindex="0" role="region" aria-label="Spielregeln">
+    <p class="runner-guide-intro">
+      Weiche den Hindernissen aus und erreiche
+      <strong><span data-runner-goal="">5.000</span> Punkte</strong>. Danach entscheidest du, ob es
+      im Endless-Modus weitergeht.
+    </p>
+    <section aria-labelledby="runner-guide-controls">
+      <h3 id="runner-guide-controls">Steuerung</h3>
+      <dl class="runner-guide-controls">
+        <div>
+          <dt>Springen</dt>
+          <dd>
+            <kbd>Leertaste</kbd> oder <kbd>↑</kbd>. Kurz drücken für einen kleinen Sprung, länger
+            halten für einen höheren. Jeder neue Sprung braucht einen neuen Tastendruck.
+          </dd>
+        </div>
+        <div>
+          <dt>Ducken</dt>
+          <dd><kbd>↓</kbd> gedrückt halten, bis das Flugtier vorbeigezogen ist.</dd>
+        </div>
+        <div>
+          <dt>Touch</dt>
+          <dd>
+            Im Spielfeld <strong>nach oben wischen oder tippen</strong>, um zu springen.
+            <strong>Nach unten wischen</strong>
+            zum kurzen Ducken. Die Pfeil-Buttons funktionieren zusätzlich; den unteren kannst du zum
+            Ducken gedrückt halten.
+          </dd>
+        </div>
+        <div>
+          <dt>Pause</dt>
+          <dd>
+            <kbd>Esc</kbd> oder den Pause-Button drücken. Mit „Fortsetzen“ spielst du weiter. Auch
+            diese Anleitung pausiert den Lauf.
+          </dd>
+        </div>
+      </dl>
+      <p>
+        Fox oder Dino wählst du vor dem Start oder während einer Pause. Ein Wechsel beginnt einen
+        neuen Lauf.
+      </p>
+    </section>
+    <section aria-labelledby="runner-guide-common">
+      <h3 id="runner-guide-common">In beiden Varianten</h3>
+      <figure class="runner-guide-obstacle">
+        <img
+          src="/404/assets/rock-light.png"
+          data-guide-light="/404/assets/rock-light.png"
+          data-guide-dark="/404/assets/rock-dark.png"
+          data-guide-image=""
+          width="104"
+          height="104"
+          loading="lazy"
+          decoding="async"
+          alt="Fels auf der Laufstrecke"
+        />
+        <figcaption>
+          <h4>Felsen</h4>
+          <p><strong>Springe</strong> darüber. Ducken hilft bei Hindernissen am Boden nicht.</p>
+        </figcaption>
+      </figure>
+      <p>
+        Eine Berührung beendet den Lauf. Mit „Nochmal“ oder dem Neustart-Button beginnst du wieder
+        bei null. Ab 250 Punkten steigt das Tempo allmählich; auch die Sprünge werden schneller.
+      </p>
+    </section>
+    <section aria-labelledby="runner-guide-fox">
+      <h3 id="runner-guide-fox">Fox Run</h3>
+      <div class="runner-guide-obstacles">
+        <figure class="runner-guide-obstacle">
+          <img
+            src="/404/assets/hedgehog-light.png"
+            data-guide-light="/404/assets/hedgehog-light.png"
+            data-guide-dark="/404/assets/hedgehog-dark.png"
+            data-guide-image=""
+            width="104"
+            height="104"
+            loading="lazy"
+            decoding="async"
+            alt="Igel auf der Laufstrecke"
+          />
+          <figcaption>
+            <h4>Igel</h4>
+            <p>
+              Der Igel bleibt am Boden. Mit einem
+              <strong>rechtzeitigen Sprung</strong> kommst du über ihn hinweg.
+            </p>
+          </figcaption>
+        </figure>
+        <figure class="runner-guide-obstacle">
+          <img
+            src="/404/assets/bird-light.png"
+            data-guide-light="/404/assets/bird-light.png"
+            data-guide-dark="/404/assets/bird-dark.png"
+            data-guide-image=""
+            width="104"
+            height="104"
+            loading="lazy"
+            decoding="async"
+            alt="Blaugrauer Vogel auf Kopfhöhe"
+          />
+          <figcaption>
+            <h4>Vögel</h4>
+            <p>
+              Sie fliegen auf Kopfhöhe. Bleib am Boden und <strong>ducke dich</strong>, statt zu
+              springen.
+            </p>
+          </figcaption>
+        </figure>
+      </div>
+      <p>
+        Bei <span data-runner-goal="">5.000</span> Punkten übernimmt das Spiel: Der Fuchs wird
+        langsamer und läuft unter den Wurzeln des Baums in seinen Bau.
+      </p>
+    </section>
+    <section aria-labelledby="runner-guide-dino">
+      <h3 id="runner-guide-dino">Dino Run</h3>
+      <div class="runner-guide-obstacles">
+        <figure class="runner-guide-obstacle">
+          <img
+            src="/404/assets/land-dino-light.png"
+            data-guide-light="/404/assets/land-dino-light.png"
+            data-guide-dark="/404/assets/land-dino-dark.png"
+            data-guide-image=""
+            width="104"
+            height="104"
+            loading="lazy"
+            decoding="async"
+            alt="Kleiner Landsaurier mit Rückenplatten"
+          />
+          <figcaption>
+            <h4>Landsaurier</h4>
+            <p>Wie beim Igel: <strong>Springe</strong> über den kleinen Saurier am Boden.</p>
+          </figcaption>
+        </figure>
+        <figure class="runner-guide-obstacle">
+          <img
+            src="/404/assets/pterosaur-light.png"
+            data-guide-light="/404/assets/pterosaur-light.png"
+            data-guide-dark="/404/assets/pterosaur-dark.png"
+            data-guide-image=""
+            width="104"
+            height="104"
+            loading="lazy"
+            decoding="async"
+            alt="Flugsaurier mit ausgebreiteten Flügeln"
+          />
+          <figcaption>
+            <h4>Flugsaurier</h4>
+            <p>
+              Hier musst du dich <strong>ducken</strong>. Auch der Doppelsprung hilft hier nicht.
+            </p>
+          </figcaption>
+        </figure>
+        <figure class="runner-guide-obstacle">
+          <img
+            src="/404/assets/meteor-light.png"
+            data-guide-light="/404/assets/meteor-light.png"
+            data-guide-dark="/404/assets/meteor-dark.png"
+            data-guide-image=""
+            width="104"
+            height="104"
+            loading="lazy"
+            decoding="async"
+            alt="Fallender Meteorit"
+          />
+          <figcaption>
+            <h4>Meteoriten</h4>
+            <p>
+              Sie kommen ab 250 Punkten. Springe zuerst ab und drücke noch in der Luft ein
+              <strong>zweites Mal</strong> nach oben, um mit dem
+              <strong>Doppelsprung</strong> auszuweichen. Bei Touch zweimal bewusst tippen oder nach
+              oben wischen. <strong>Gedrückt halten reicht nicht.</strong>
+            </p>
+            <p>
+              Bei hohem Tempo verlangsamt sich der Moment kurz, damit du den Sprung gezielt timen
+              kannst.
+            </p>
+          </figcaption>
+        </figure>
+      </div>
+      <p>
+        Bei <span data-runner-goal="">5.000</span> Punkten übernimmt das Spiel. Ein großer Meteorit
+        trifft den Dino und zerstört die Landschaft. Das ist das reguläre Ende, kein Spielfehler.
+      </p>
+    </section>
+    <section aria-labelledby="runner-guide-endless">
+      <h3 id="runner-guide-endless">Danach: Endless</h3>
+      <p>
+        Nach dem Ziel erscheint <strong>„Endless starten“</strong>. Erst mit diesem Button geht es
+        weiter, ab 5.000 Punkten und ohne neues Punktelimit. Das Tempo läuft zunächst etwas sanfter
+        an und steigt wieder an.
+      </p>
+      <div class="runner-guide-worlds">
+        <figure>
+          <img
+            src="/404/assets/fox-endless-light.png"
+            data-guide-light="/404/assets/fox-endless-light.png"
+            data-guide-dark="/404/assets/fox-endless-dark.png"
+            data-guide-image=""
+            width="320"
+            height="200"
+            loading="lazy"
+            decoding="async"
+            alt="Fuchs im Wald des Endless-Modus"
+          />
+          <figcaption>
+            <h4>Fox: Weiter in den Wald</h4>
+            <p>
+              Der Fuchs kommt auf der anderen Seite des Baums aus dem Bau. Währenddessen geht die
+              Landschaft in einen Wald über.
+            </p>
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/404/assets/dino-endless-light.png"
+            data-guide-light="/404/assets/dino-endless-light.png"
+            data-guide-dark="/404/assets/dino-endless-dark.png"
+            data-guide-image=""
+            width="320"
+            height="200"
+            loading="lazy"
+            decoding="async"
+            alt="Verrußte Saurier in der zerstörten Endless-Landschaft"
+          />
+          <figcaption>
+            <h4>Dino: Zurück nach dem Einschlag</h4>
+            <p>
+              Der Dino wird wiederbelebt. Die Welt bleibt zerstört und die Saurier tragen Ruß- und
+              Aschespuren.
+            </p>
+          </figcaption>
+        </figure>
+      </div>
+      <p>
+        Die Hindernisse und Steuerung bleiben gleich. Nach einer Kollision beginnt „Nochmal“ wieder
+        einen normalen Lauf bei null. Fox und Dino haben getrennte Highscores, die nur in deinem
+        Browser gespeichert werden.
+      </p>
+    </section>
+    <p class="runner-guide-note">
+      Schließen mit dem Kreuz, <kbd>Esc</kbd> oder einem Klick außerhalb. Dein Spiel bleibt
+      pausiert, bis du es selbst fortsetzt.
+    </p>
+  </div>
+</dialog>

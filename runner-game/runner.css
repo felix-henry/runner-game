@@ -1,0 +1,448 @@
+/* Shared runner UI; the host supplies theme tokens and base button/icon styles. */
+.runner-guide-header [data-tooltip]::after {
+  top: calc(100% + 10px);
+  bottom: auto;
+}
+.dino-game {
+  max-width: 680px;
+  margin: 36px auto 0;
+  padding: 20px 14px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.dino-heading,
+.dino-toolbar,
+.dino-playback,
+.dino-movement {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.dino-heading,
+.dino-toolbar {
+  justify-content: space-between;
+}
+.dino-toolbar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.dino-playback {
+  justify-content: space-between;
+}
+.dino-movement {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.dino-heading {
+  min-height: 44px;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 8px;
+}
+.dino-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin: 0 0 4px;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+.dino-stats div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  min-width: 0;
+  max-width: 100%;
+}
+.dino-stats dt {
+  color: var(--text-soft);
+}
+.dino-stats dd {
+  min-width: 7ch;
+  max-width: 100%;
+  margin: 0;
+  color: var(--accent);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+.dino-heading h2 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+.dino-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  max-width: 100%;
+}
+.dino-title h2 {
+  flex: none;
+  white-space: nowrap;
+}
+.runner-character-switch {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  flex: 0 1 7.5em;
+  width: 7.5em;
+  min-width: 0;
+  margin: 0;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  font-size: 0.95rem;
+  font-weight: 650;
+  line-height: 1.25;
+}
+.runner-character-switch::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset-block: 3px;
+  left: 3px;
+  width: calc((100% - 6px) / 2);
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--accent) 25%, var(--surface));
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%);
+  transition: transform 180ms ease;
+}
+.runner-character-switch[data-character="dino"]::before {
+  transform: translateX(100%);
+}
+.runner-character-switch label {
+  min-width: 0;
+  cursor: pointer;
+}
+.runner-character-switch label span {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  padding: 6px 8px;
+  color: var(--text-soft);
+}
+.runner-character-switch input:checked + span {
+  color: var(--text);
+  font-weight: 750;
+}
+.runner-character-switch input:focus-visible + span {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+.runner-character-switch:disabled {
+  opacity: 0.75;
+}
+.runner-character-switch:disabled label {
+  cursor: not-allowed;
+}
+.dino-heading p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.7rem;
+  text-align: right;
+}
+.dino-runner {
+  width: 100%;
+  max-width: 600px;
+  height: 200px;
+  margin: 8px auto 20px;
+  touch-action: manipulation;
+}
+.dino-runner canvas {
+  display: block;
+  width: 100%;
+  height: 200px;
+  image-rendering: pixelated;
+}
+.dino-runner[data-swipe-controls] {
+  touch-action: pan-x pinch-zoom;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.dino-runner[data-pointer-focus]:focus {
+  outline: none;
+}
+.dino-game button:disabled {
+  cursor: default;
+  color: var(--text-soft);
+  opacity: 0.6;
+}
+.dino-game .icon-button {
+  border-color: var(--line);
+}
+.dino-toolbar .btn {
+  width: 142px;
+  min-width: 142px;
+  flex: 0 0 142px;
+  padding-inline: 0.85rem;
+}
+.dino-movement .icon-button {
+  width: 100%;
+  border-color: var(--line);
+  touch-action: none;
+  transition-duration: 80ms;
+}
+.dino-movement .icon-button:enabled:is(:active, [data-pressed="true"], [aria-pressed="true"]) {
+  background: var(--surface-soft);
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+.runner-result:not([hidden]) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-block: 16px;
+  border-block: 1px solid var(--line);
+}
+.runner-result > div {
+  min-width: 0;
+  flex: 1 1 220px;
+}
+.runner-result h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+#dino-result-title:focus {
+  outline: none;
+}
+.runner-result p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.85rem;
+}
+.runner-result .btn {
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+html:has(.runner-guide[open]) {
+  overflow: hidden;
+}
+.runner-help-row {
+  max-width: 680px;
+  margin-inline: auto;
+  padding: 4px 15px 0;
+}
+.runner-help-link {
+  display: block;
+  min-height: 44px;
+  margin: 0;
+  padding: 8px 0;
+  border: 0;
+  color: var(--text-soft);
+  background: transparent;
+  font-size: 0.875rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.runner-help-link:enabled:hover {
+  color: var(--accent-dark);
+}
+.runner-guide {
+  width: min(820px, calc(100% - 24px));
+  max-width: none;
+  max-height: calc(100vh - 24px);
+  max-height: calc(100dvh - 24px);
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  color: var(--text);
+  background: var(--surface);
+  box-shadow: 0 24px 80px rgb(0 0 0 / 25%);
+}
+.runner-guide[open] {
+  display: flex;
+  flex-direction: column;
+}
+.runner-guide::backdrop {
+  background: rgb(8 14 17 / 75%);
+}
+.runner-guide-header {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.runner-guide-header p {
+  margin: 0 0 2px;
+  color: var(--text-soft);
+  font-size: 0.75rem;
+}
+.runner-guide-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+.runner-guide-body {
+  min-height: 0;
+  padding: 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  overflow-wrap: anywhere;
+}
+.runner-guide-body:focus-visible {
+  outline-offset: -3px;
+}
+.runner-guide-body section {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.runner-guide h3,
+.runner-guide h4 {
+  margin: 0 0 8px;
+  line-height: 1.4;
+}
+.runner-guide h3 {
+  font-size: 1.05rem;
+}
+.runner-guide h4 {
+  font-size: 0.95rem;
+}
+.runner-guide-body p,
+.runner-guide-controls dd {
+  margin: 0 0 12px;
+  color: var(--text-soft);
+  font-size: 0.875rem;
+}
+.runner-guide-body .runner-guide-intro {
+  color: var(--text);
+  font-size: 1rem;
+}
+.runner-guide-body strong {
+  color: var(--text);
+  font-weight: 650;
+}
+.runner-guide-controls {
+  margin: 0;
+}
+.runner-guide-controls dt {
+  margin-bottom: 4px;
+  font-size: 0.875rem;
+  font-weight: 650;
+}
+.runner-guide kbd {
+  padding: 1px 4px;
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  color: var(--text);
+  background: var(--bg-alt);
+  font: inherit;
+}
+.runner-guide-obstacle {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  margin: 0 0 16px;
+}
+.runner-guide-obstacle img {
+  display: block;
+  width: 72px;
+  height: 72px;
+  image-rendering: pixelated;
+}
+.runner-guide-worlds {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  margin-block: 20px;
+}
+.runner-guide-worlds figure {
+  min-width: 0;
+  margin: 0;
+}
+.runner-guide-worlds img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 8 / 5;
+  margin-bottom: 12px;
+  image-rendering: pixelated;
+}
+.runner-guide-body .runner-guide-note {
+  margin-block: 20px 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 0.8rem;
+}
+@media (min-width: 640px) {
+  .runner-guide-header {
+    padding: 20px 24px;
+  }
+  .runner-guide-body {
+    padding: 20px 24px 24px;
+  }
+  .runner-guide-controls > div {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 12px;
+  }
+  .runner-guide-obstacle {
+    grid-template-columns: 104px minmax(0, 1fr);
+    gap: 16px;
+  }
+  .runner-guide-obstacle img {
+    width: 104px;
+    height: 104px;
+  }
+  .runner-guide-worlds {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 381px) {
+  .dino-toolbar {
+    display: flex;
+    gap: 0.3rem;
+  }
+  .dino-playback {
+    justify-content: normal;
+  }
+  .dino-movement {
+    display: flex;
+    gap: 0.3rem;
+  }
+  .dino-movement .icon-button {
+    width: 44px;
+  }
+}
+@media (min-width: 541px) {
+  .dino-game {
+    padding-inline: 24px;
+  }
+  .runner-help-row {
+    padding-inline: 25px;
+  }
+  .dino-toolbar,
+  .dino-playback,
+  .dino-movement {
+    gap: 0.6rem;
+  }
+}
+@media (forced-colors: active) {
+  .runner-character-switch::before {
+    forced-color-adjust: none;
+    border-color: Highlight;
+    background: Highlight;
+  }
+  .runner-character-switch input:checked + span {
+    forced-color-adjust: none;
+    color: HighlightText;
+  }
+}
