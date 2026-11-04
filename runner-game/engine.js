@@ -14,9 +14,8 @@ globalThis.FelixRunner = class {
   };
 
   static paceAt(points) {
-    if (points <= 250) return 1;
-    if (points <= 1000) return 1 + ((points - 250) / 750) * 0.5;
-    return Math.min(2.5, 1.5 + (points - 1000) / 4000);
+    if (points <= 5000) return 1 + (Math.max(0, points) / 5000) * 0.75;
+    return Math.min(2.25, 1.75 + (points - 5000) / 10000);
   }
 
   constructor(width = 600, random = Math.random, character = FelixRunnerCharacter) {
@@ -33,9 +32,10 @@ globalThis.FelixRunner = class {
   }
 
   get pace() {
-    if (this.mode === "endless")
-      return 1.5 + Math.min(1, this.endlessTime / FelixRunner.warmupDuration);
-    return FelixRunner.paceAt(this.score);
+    const target = FelixRunner.paceAt(this.score);
+    if (this.mode !== "endless") return target;
+    const progress = Math.min(1, this.endlessTime / FelixRunner.warmupDuration);
+    return 1.5 + (target - 1.5) * progress;
   }
 
   get speed() {

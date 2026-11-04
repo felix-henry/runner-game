@@ -83,11 +83,12 @@ Meteoriten erscheinen im Dino-Modus **ab 250 Punkten**. Bei hohem Tempo, ab unge
 
 ### So steigt das Tempo
 
-- Bis **250 Punkte:** 1x.
-- Bis **1.000 Punkte:** gleichmäßig auf 1,5x.
-- Bis **5.000 Punkte:** weiter auf maximal 2,5x.
+- **0 bis 5.000 Punkte:** gleichmäßig von 1x auf 1,75x, direkt ab dem Start.
+- **5.000 bis 7.500 Punkte:** von 1,75x auf 2x.
+- **7.500 bis 10.000 Punkte:** von 2x auf 2,25x.
+- **Ab 10.000 Punkten:** maximal 2,25x.
 
-Bewegungen und Sprünge werden im selben Verhältnis schneller. Die Sprunghöhe wächst dadurch nicht.
+Die Kurve gilt für beide Figuren auf Handy und Desktop. Bewegungen und Sprünge werden im selben Verhältnis schneller. Die Sprunghöhe wächst dadurch nicht. Meteoriten erscheinen weiterhin erst ab 250 Punkten; das ist unabhängig von der Tempokurve.
 
 ### Auswahl und Pause
 
@@ -111,7 +112,7 @@ Danach erscheint **„Du hast das Ziel erreicht!“**. Erst mit **Endless starte
 
 ### Noch eine Strecke?
 
-Endless beginnt bei **5.000 Punkten**, ohne neues Punktelimit. Die Rückkehranimation selbst gibt keine Punkte. Das Tempo startet sanfter bei **1,5x** und steigt in den ersten **sechs aktiven Spielsekunden** wieder auf **2,5x**.
+Endless beginnt bei **5.000 Punkten**, ohne neues Punktelimit. Die Rückkehranimation selbst gibt keine Punkte. Das Tempo startet sanfter bei **1,5x** und geht in den ersten **sechs aktiven Spielsekunden** fließend in das zur aktuellen Punktzahl passende Tempo über. Danach steigt es weiter bis 2x bei 7.500 Punkten und 2,25x bei 10.000. Pausen und Animationen verbrauchen diese Anlaufzeit nicht. Der Meteoriten-Slomo des Dinos greift weiterhin, sobald das aktuelle Tempo 1,75x erreicht.
 
 - **Fox:** Er kommt auf der anderen Seite des Baums aus dem Bau. Während seiner Rückkehr geht der Hintergrund fließend in einen Wald über.
 - **Dino:** Er wird wiederbelebt. Die Landschaft bleibt zerstört; Dino, Landsaurier und Flugsaurier tragen Ruß- und Aschespuren. Ihre Animationen, Größen und Kollisionspixel bleiben unverändert.
@@ -125,7 +126,7 @@ Fox und Dino haben **getrennte Highscores**, gespeichert ausschließlich im Loca
 - `felixhenry-fox-highscore`
 - `felixhenry-dino-highscore`
 
-Es gibt dafür **keine Cookies und keine Übertragung an einen Server**. Ist Local Storage gesperrt, bleibt der Rekord nur im Arbeitsspeicher der aktuellen Seite. Browser-Ursprünge haben eigene Speicherbereiche: Die Demo auf Port 8233 teilt ihren Rekord nicht mit felixhenry.de. Auf der Website teilen 404-Seite und Minigames-Seite dagegen dieselben Rekorde.
+Es gibt dafür **keine Cookies und keine Übertragung an einen Server**. Ist Local Storage gesperrt, bleibt der Rekord nur im Arbeitsspeicher der aktuellen Seite. Browser-Ursprünge haben eigene Speicherbereiche: Die Demo auf Port 8233 teilt ihren Rekord nicht mit felixhenry.de. Auf der Website teilen 404-Seite und Runner-Unterseite dagegen dieselben Rekorde.
 
 </details>
 
@@ -151,7 +152,7 @@ Die gemeinsame [Spielvorlage](runner-game/markup.html) wird sowohl von der Demo 
 
 Im Website-Repo liegt dieser Quellcode unter `404/`. Die Fehlerseite `404/404.html` gehört nur zum Website-Repo. Das Spiel-Repo enthält keine Website-Navigation, keinen Footer und keine Fehlerseite.
 
-Der Website-Build bindet dasselbe Spiel auch unter `/projekte/minigames` ein, versieht CSS und JavaScript mit Content-Hashes und übernimmt [LICENSE.txt](LICENSE.txt) unverändert nach `/404/LICENSE.txt`. Die reguläre Spielseite liefert HTTP 200, unbekannte Website-Adressen HTTP 404. Beide bleiben von der Suchindexierung ausgeschlossen. Demo-Server, README, README-Vorschauen, Tests und Git-Verzeichnisse werden nicht veröffentlicht.
+Der Website-Build bindet dasselbe Spiel unter `/projekte/minigames/runner-game` ein. Die Übersicht unter `/projekte/minigames` verlinkt die einzelnen Spiele über Kacheln und lädt das Spiel selbst noch nicht. Der Build versieht CSS und JavaScript mit Content-Hashes und übernimmt [LICENSE.txt](LICENSE.txt) unverändert nach `/404/LICENSE.txt`. Die reguläre Spielseite liefert HTTP 200, unbekannte Website-Adressen HTTP 404. Übersicht und Spielseite bleiben von der Suchindexierung ausgeschlossen. Demo-Server, README, README-Vorschauen, Tests und Git-Verzeichnisse werden nicht veröffentlicht.
 
 ### Dokumentation pflegen
 

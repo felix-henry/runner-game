@@ -85,11 +85,12 @@ Meteors appear in Dino mode **from 250 points**. At higher speeds, from around *
 
 ### How speed increases
 
-- Up to **250 points:** 1x.
-- Up to **1,000 points:** a steady increase to 1.5x.
-- Up to **5,000 points:** a further increase to a maximum of 2.5x.
+- **0 to 5,000 points:** a steady increase from 1x to 1.75x, starting immediately.
+- **5,000 to 7,500 points:** from 1.75x to 2x.
+- **7,500 to 10,000 points:** from 2x to 2.25x.
+- **Above 10,000 points:** capped at 2.25x.
 
-Movement and jumps speed up together. Jump height does not increase.
+The curve is the same for both characters on phones and desktops. Movement and jumps speed up together. Jump height does not increase. Meteors still begin at 250 points; this is separate from the speed curve.
 
 ### Character selection and pausing
 
@@ -113,7 +114,7 @@ The message **Du hast das Ziel erreicht!** means **"You have reached the goal!"*
 
 ### Keep going?
 
-Endless starts at **5,000 points**, with no further score limit. The return animation does not award points. Speed eases in at **1.5x**, then rises back to **2.5x** over the first **six seconds of active play**.
+Endless starts at **5,000 points**, with no further score limit. The return animation does not award points. Speed eases in at **1.5x** and smoothly joins the current score-based pace over the first **six seconds of active play**, then continues toward 2x at 7,500 points and 2.25x at 10,000. Pausing and cutscenes do not advance this warmup. Dino's meteor slow motion still applies once the current pace reaches 1.75x.
 
 - **Fox:** It emerges from the other side of the tree. During its return, the background smoothly transitions into a forest.
 - **Dino:** It is revived. The landscape stays ruined, and Dino, land dinosaurs and pterosaurs have soot and ash markings. Their animations, sizes and collision pixels remain unchanged.
@@ -127,7 +128,7 @@ Fox and Dino have **separate high scores**, stored only in your browser's Local 
 - `felixhenry-fox-highscore`
 - `felixhenry-dino-highscore`
 
-**No cookies are set and no scores are sent to a server.** If Local Storage is blocked, the record only lasts for the current page session. Browser origins have separate storage: the demo on port 8233 does not share its records with felixhenry.de. On the website, the 404 and Minigames pages do share the same records.
+**No cookies are set and no scores are sent to a server.** If Local Storage is blocked, the record only lasts for the current page session. Browser origins have separate storage: the demo on port 8233 does not share its records with felixhenry.de. On the website, the 404 page and Runner detail page do share the same records.
 
 </details>
 
@@ -153,7 +154,7 @@ The shared [game template](runner-game/markup.html) is used by both the demo and
 
 In the website repository, this source lives under `404/`. The error page `404/404.html` belongs only to the website repository. The game repository contains no website navigation, footer or error page.
 
-The website build also embeds the same game at `/projekte/minigames`, adds content hashes to CSS and JavaScript, and copies [LICENSE.txt](LICENSE.txt) unchanged to `/404/LICENSE.txt`. The regular game page returns HTTP 200; unknown website addresses return HTTP 404. Both remain excluded from search indexing. The demo server, READMEs, README previews, tests and Git directories are not published with the website.
+The website build also embeds the same game at `/projekte/minigames/runner-game`. The `/projekte/minigames` overview links to each game's own page through tiles and does not load the game itself. The build adds content hashes to CSS and JavaScript and copies [LICENSE.txt](LICENSE.txt) unchanged to `/404/LICENSE.txt`. The regular game page returns HTTP 200; unknown website addresses return HTTP 404. The overview and game page remain excluded from search indexing. The demo server, READMEs, README previews, tests and Git directories are not published with the website.
 
 ### Maintaining the documentation
 
